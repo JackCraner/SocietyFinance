@@ -1,0 +1,14 @@
+C:\Coding\Projects\FishFinance\FishFinance\bin\Debug\FishFinance.exe
+C:\Coding\Projects\FishFinance\FishFinance\bin\Debug\FishFinance.pdb
+C:\Coding\Projects\FishFinance\FishFinance\bin\Debug\FishFinance.xml
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\FishFinance.vbproj.GenerateResource.Cache
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\FishFinance.exe
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\FishFinance.xml
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\FishFinance.pdb
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Define_Expenditure.resources
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Base_Form.resources
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Manage_Pending_Form.resources
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\FishFinance.vbproj.ResolveComReference.cache
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Manage_Payment_Form.resources
+C:\Coding\Projects\FishFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Manage_Transaction_Form.resources
