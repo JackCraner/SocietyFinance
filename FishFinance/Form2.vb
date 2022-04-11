@@ -1,33 +1,31 @@
 ﻿Public Class Define_Expenditure
 
     Private Sub B_Submit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles B_Submit.Click
-        If RadioButton3.Checked Then
-            Base_Form.Create_Expenditure(New Expenditure(TextBox1.Text, Double.Parse(TextBox2.Text), Date.Today))
+        Dim amount As Double = 0
+        If Not TextBox2.Text = "" Then
+            amount = TextBox2.Text
         End If
-        If RadioButton4.Checked Then
-            Base_Form.Create_Expenditure(New RepaymentExpenditure(TextBox1.Text, Double.Parse(TextBox2.Text), Date.Today, ExpenditureTypes.Recoup))
-        End If
-        If RadioButton5.Checked Then
-            If String.IsNullOrEmpty(TextBox2.Text) Then
-                Base_Form.Create_Expenditure(New RepaymentExpenditure(TextBox1.Text, 0, Date.Today, ExpenditureTypes.Pending))
-            Else
-                Base_Form.Create_Expenditure(New RepaymentExpenditure(TextBox1.Text, Double.Parse(TextBox2.Text), Date.Today, ExpenditureTypes.Pending))
-            End If
 
+        Dim new_exp As New Expense(TextBox1.Text, Double.Parse(amount), DateTimePicker1.Value.Date)
+
+        If (Not ComboBox1.Text = "") Then
+
+            new_exp.expense_topic = Base_Form.Set_Topic(ComboBox1.Text)
         End If
+        Base_Form.Create_Expenditure(new_exp)
         Me.Close()
     End Sub
 
     Private Sub Define_Expenditure_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        GroupBox4.Visible = False
+
         TextBox2.Visible = False
     End Sub
 
     Public Sub reset()
         TextBox1.Text = ""
         TextBox2.Text = ""
-        RadioButton1.Checked = True
-        GroupBox4.Visible = False
+        Dim tempList As List(Of Topic) = Base_Form.Get_Topics()
+        'Dim nameList As List(Of String) = From name In tempList Select name.name
     End Sub
 
     Private Sub TextBox2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox2.KeyPress
@@ -38,34 +36,12 @@
         
     End Sub
 
-    Private Sub RadioButton5_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton5.CheckedChanged
-        If (RadioButton5.Checked) Then
-            TextBox2.Visible = False
-            GroupBox4.Visible = True
-        Else
-            RadioButton2.Checked = False
-            RadioButton1.Checked = False
-            GroupBox4.Visible = False
-        End If
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+
     End Sub
 
-    Private Sub RadioButton2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton2.CheckedChanged
-        If (RadioButton2.Checked) Then
-            TextBox2.Visible = True
-        Else
-            TextBox2.Visible = False
-        End If
-    End Sub
-
-    Private Sub RadioButton4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton4.CheckedChanged
-        If (RadioButton4.Checked) Then
-            TextBox2.Visible = True
-        End If
-    End Sub
-
-    Private Sub RadioButton3_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton3.CheckedChanged
-        If (RadioButton3.Checked) Then
-            TextBox2.Visible = True
-        End If
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        TextBox2.Visible = Not TextBox2.Visible
     End Sub
 End Class

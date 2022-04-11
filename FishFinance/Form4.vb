@@ -1,9 +1,12 @@
 ﻿Public Class Manage_Payment_Form
     Dim payment As Transaction
-    Dim expense As RepaymentExpenditure
-    Public Sub StartForm(ByRef payment As Transaction, ByRef expense As RepaymentExpenditure)
+    Dim expense As Expense
+    Public Sub StartForm(ByRef payment As Transaction, ByRef expense As Expense)
         Me.payment = payment
         Me.expense = expense
+        UpdateForm()
+    End Sub
+    Public Sub UpdateForm()
         TextBox1.Text = payment.amount
         TextBox2.Text = payment.name
     End Sub
@@ -15,9 +18,11 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        expense.list_of_payments.Remove(payment)
-        Base_Form.Remove_Payment(payment)
-        Manage_Pending_Form.updateForm()
+        expense.Remove_Payment(payment)
         Me.Visible = False
+    End Sub
+
+    Private Sub Manage_Payment_Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

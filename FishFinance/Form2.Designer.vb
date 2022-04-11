@@ -28,13 +28,12 @@ Partial Class Define_Expenditure
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.B_Submit = New System.Windows.Forms.Button()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2.SuspendLayout()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
@@ -94,52 +93,6 @@ Partial Class Define_Expenditure
         Me.B_Submit.Text = "Submit"
         Me.B_Submit.UseVisualStyleBackColor = True
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.RadioButton5)
-        Me.GroupBox2.Controls.Add(Me.RadioButton4)
-        Me.GroupBox2.Controls.Add(Me.RadioButton3)
-        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(15, 83)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(200, 114)
-        Me.GroupBox2.TabIndex = 11
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Expenditure Type"
-        '
-        'RadioButton5
-        '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.Location = New System.Drawing.Point(6, 80)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(85, 24)
-        Me.RadioButton5.TabIndex = 2
-        Me.RadioButton5.TabStop = True
-        Me.RadioButton5.Text = "Pending"
-        Me.RadioButton5.UseVisualStyleBackColor = True
-        '
-        'RadioButton4
-        '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(6, 56)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(113, 24)
-        Me.RadioButton4.TabIndex = 1
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "Recoupable"
-        Me.RadioButton4.UseVisualStyleBackColor = True
-        '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(7, 33)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(83, 24)
-        Me.RadioButton3.TabIndex = 0
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "Straight"
-        Me.RadioButton3.UseVisualStyleBackColor = True
-        '
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.TextBox2)
@@ -163,20 +116,56 @@ Partial Class Define_Expenditure
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Price Known?"
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(10, 74)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(203, 25)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "Expenditure Label"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(42, 112)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 15
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(12, 152)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(238, 25)
+        Me.Label3.TabIndex = 16
+        Me.Label3.Text = "Expenditure Deadline"
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Location = New System.Drawing.Point(15, 180)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
+        Me.DateTimePicker1.TabIndex = 17
+        '
         'Define_Expenditure
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(243, 426)
+        Me.ClientSize = New System.Drawing.Size(255, 426)
+        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.B_Submit)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBox1)
         Me.Name = "Define_Expenditure"
         Me.Text = "Define Expenditure"
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -191,10 +180,10 @@ Partial Class Define_Expenditure
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents B_Submit As System.Windows.Forms.Button
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents DateTimePicker1 As DateTimePicker
 End Class
