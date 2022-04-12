@@ -32,9 +32,7 @@ Partial Class Manage_Transaction_Form
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -108,9 +106,7 @@ Partial Class Manage_Transaction_Form
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.TextBox3)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
         Me.GroupBox1.Controls.Add(Me.RadioButton1)
         Me.GroupBox1.Location = New System.Drawing.Point(302, 23)
@@ -163,15 +159,6 @@ Partial Class Manage_Transaction_Form
         Me.Label7.TabIndex = 5
         Me.Label7.Text = "Name"
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(201, 45)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(32, 13)
-        Me.Label6.TabIndex = 4
-        Me.Label6.Text = "Code"
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -180,13 +167,6 @@ Partial Class Manage_Transaction_Form
         Me.Label5.Size = New System.Drawing.Size(31, 13)
         Me.Label5.TabIndex = 3
         Me.Label5.Text = "Type"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(174, 64)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 2
         '
         'RadioButton2
         '
@@ -409,9 +389,7 @@ Partial Class Manage_Transaction_Form
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox

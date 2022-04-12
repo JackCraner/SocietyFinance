@@ -43,6 +43,7 @@ Partial Class Manage_Pending_Form
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -137,11 +138,11 @@ Partial Class Manage_Pending_Form
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(22, 77)
+        Me.Label5.Location = New System.Drawing.Point(9, 77)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(103, 20)
+        Me.Label5.Size = New System.Drawing.Size(130, 20)
         Me.Label5.TabIndex = 5
-        Me.Label5.Text = "Paid/To Pay"
+        Me.Label5.Text = "Amount To Pay"
         '
         'Label6
         '
@@ -234,11 +235,22 @@ Partial Class Manage_Pending_Form
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 12
         '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(373, 287)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(232, 46)
+        Me.Button3.TabIndex = 14
+        Me.Button3.Text = "Cancel Expenditure"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Manage_Pending_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(721, 345)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Label9)
@@ -282,4 +294,5 @@ Partial Class Manage_Pending_Form
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Button3 As Button
 End Class

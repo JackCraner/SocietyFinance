@@ -7,12 +7,12 @@
         UpdateForm()
     End Sub
     Public Sub UpdateForm()
-        TextBox1.Text = payment.amount
+        TextBox1.Text = payment.getABSAmount
         TextBox2.Text = payment.name
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         payment.name = TextBox2.Text
-        payment.amount = Double.Parse(TextBox1.Text)
+        payment.setAmount(Double.Parse(TextBox1.Text))
         Manage_Pending_Form.updateForm()
         Me.Visible = False
     End Sub

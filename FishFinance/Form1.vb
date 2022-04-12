@@ -26,8 +26,14 @@ Public Class Base_Form
 
         Return sb.ToString()
     End Function
-    Public Sub handle_transaction(ByRef transaction As Transaction)
+    Public Sub Handle_Transaction(ByRef transaction As Transaction)
+        current_Balance += transaction.getAmount()
+
+        updateALL()
         'add to account history
+    End Sub
+    Public Sub Add_History()
+
     End Sub
     Public Sub Create_Expenditure(ByRef expenditure As Expense)
         expenditure.IDCode = Create_UID()
@@ -39,7 +45,7 @@ Public Class Base_Form
     Public Sub End_Expendition(ByRef exp As Expense)
         If (list_of_expenditures.Contains(exp)) Then
             If (exp.isPaid) Then
-                current_Balance += exp.paidFlag.amount
+                'current_Balance += exp.paidFlag.amount
                 list_of_expenditures.Remove(exp)
             Else
                 MsgBox("Expense Not Paid and thus cannot be closed")
@@ -51,7 +57,16 @@ Public Class Base_Form
         'ADD expense to account history
         updateALL()
     End Sub
+    Public Sub Cancel_Expedition(ByRef exp As Expense)
+        If (list_of_expenditures.Contains(exp)) Then
+            If exp.isPaid Then
+            Else
+                list_of_expenditures.Remove(exp)
+            End If
+        End If
 
+
+    End Sub
     Public Sub updateALL()
         Dim balance_count As Double = 0
 
@@ -78,7 +93,7 @@ Public Class Base_Form
                 If (exp.projected_cost = 0) Then
                     temp_balance -= exp.Get_Recoup()
                 Else
-                    temp_balance = exp.projected_cost
+                    temp_balance -= exp.projected_cost
                 End If
             End If
 
@@ -185,11 +200,11 @@ Public Class Base_Form
         'filters out dates which have already been updated
         While (Not (xlWorkSheet.Cells(counter, 1).Value = Nothing)) And (DateTime.Compare(xlWorkSheet.Cells(counter, 1).Value, last_time_updated) >= 0)
             Dim transactionID As String = xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(1)
-            Dim newTransaction As New Transaction(xlWorkSheet.Cells(counter, 4).Value, xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(0), transactionID, xlWorkSheet.Cells(counter, 1).Value)
-            If newTransaction.amount <= 0 Then
+            Dim newTransaction As New ExcelItem(xlWorkSheet.Cells(counter, 4).Value, xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(0), transactionID, xlWorkSheet.Cells(counter, 1).Value)
+            If newTransaction.amount >= 0 Then
                 For Each expense As Expense In list_of_expenditures
                     If transactionID.Contains(expense.IDCode) Then  'THis is a worry, make more strict
-                        expense.Add_Payment(newTransaction)
+                        expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
                         rowAccounted = True
                     End If
 
@@ -198,9 +213,9 @@ Public Class Base_Form
 
             If rowAccounted = False Then
                 If newTransaction.amount > 0 Then
-                    list_unaccounted_in.Add(newTransaction)
+                    list_unaccounted_in.Add((New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
                 Else
-                    list_unaccounted_out.Add(newTransaction)
+                    list_unaccounted_out.Add((New Transaction(Math.Abs(newTransaction.amount), TransactionHandle.Outgoing, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
 
                 End If
 

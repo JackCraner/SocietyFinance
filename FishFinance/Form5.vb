@@ -18,7 +18,7 @@
         transactionFinished = False
         GroupBox1.Visible = False
         GroupBox2.Visible = False
-        If transaction.amount > 0 Then
+        If transaction.getAmount() > 0 Then
             Label11.Text = "Income From:"
         Else
             Label11.Text = "Outgoing To:"
@@ -28,7 +28,7 @@
     End Sub
     Public Sub updateForm()
         Label1.Text = transaction.name
-        Label2.Text = transaction.amount
+        Label2.Text = transaction.getABSAmount
         Label3.Text = transaction.dateMade
         Label4.Text = transaction.reference
         DataGridView2.Rows.Clear()
@@ -38,7 +38,7 @@
                 DataGridView2.Rows.Add(New String() {expense.name, FormatCurrency(expense.Get_Recoup), FormatCurrency(expense.projected_cost), expense.deadline, expense.IDCode})
 
 
-                If (expense.projected_cost = transaction.amount) Then
+                If (expense.projected_cost = transaction.getABSAmount) Then
 
                     DataGridView2.Rows(counter).DefaultCellStyle.BackColor = Color.Green
                 End If
@@ -52,7 +52,7 @@
     End Sub
 
     Private Sub Define_Issue()
-        If transaction.amount > 0 Then
+        If transaction.getAmount() > 0 Then
             'assign to expense or mark as donation
             DataGridView1.Rows.Clear()
             For Each exp As Expense In list_expenses
@@ -66,12 +66,12 @@
 
 
             For Each exp As Expense In list_expenses
-                If (exp.projected_cost = transaction.amount And Not exp.isPaid) Then
-                    Dim answer As Integer = MsgBox("Is {" + transaction.name + ", " + transaction.reference + ", £" + CStr(transaction.amount) + "}" + " = " + exp.name + " ?", vbQuestion + vbYesNo + vbDefaultButton2, "Detected Expense Match")
+                If (exp.projected_cost = transaction.getABSAmount And Not exp.isPaid) Then
+                    Dim answer As Integer = MsgBox("Is {" + transaction.name + ", " + transaction.reference + ", £" + CStr(transaction.getABSAmount) + "}" + " = " + exp.name + " ?", vbQuestion + vbYesNo + vbDefaultButton2, "Detected Expense Match")
                     If answer = vbYes Then
                         answer = MsgBox("Are you still waiting for recoupments?", vbQuestion + vbYesNo + vbDefaultButton2, "Defining Expense")
                         If answer = vbYes Then
-                            exp.paidFlag = transaction
+                            exp.Add_Paid(transaction)
                         Else
                             Base_Form.End_Expendition(exp)
                         End If
@@ -82,8 +82,7 @@
 
             'assign as straight payment or recoup expense
 
-            Label9.Text = transaction.amount
-            TextBox2.Text = Base_Form.Create_UID()
+            Label9.Text = transaction.getABSAmount
             GroupBox1.Visible = True
 
 
@@ -93,24 +92,19 @@
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         If RadioButton2.Checked Then
-            Dim newExpense As New Expense(TextBox2.Text, transaction.amount, transaction.dateMade)
-            If (TextBox2.Text.Length = 3) Then
-                newExpense.IDCode = TextBox2.Text
-            Else
-                MsgBox("Error in ID Code")
-                Exit Sub
-            End If
-            newExpense.paidFlag = transaction
+            Dim newExpense As New Expense(TextBox3.Text, transaction.getABSAmount, transaction.dateMade)
+
+            newExpense.Add_Paid(transaction)
             Base_Form.Create_Expenditure(newExpense)
         Else
-            Base_Form.handle_transaction(transaction)
+            'Base_Form.handle_transaction(transaction)
         End If
         Me.Close()
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
 
-        list_expenses(DataGridView1.CurrentRow.Index).Add_Payment(transaction)
+        list_expenses(DataGridView1.CurrentRow.Index).Add_Income(transaction)
         Me.Close()
     End Sub
 

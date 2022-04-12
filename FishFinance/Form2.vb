@@ -1,4 +1,6 @@
-﻿Public Class Define_Expenditure
+﻿Imports System.ComponentModel
+
+Public Class Define_Expenditure
 
     Private Sub B_Submit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles B_Submit.Click
         Dim amount As Double = 0
@@ -24,7 +26,9 @@
     Public Sub reset()
         TextBox1.Text = ""
         TextBox2.Text = ""
-        Dim tempList As List(Of Topic) = Base_Form.Get_Topics()
+        For Each t In Base_Form.Get_Topics()
+            ComboBox1.Items.Add(t.name)
+        Next
         'Dim nameList As List(Of String) = From name In tempList Select name.name
     End Sub
 
@@ -33,7 +37,7 @@
         If AllowedChars.IndexOf(e.KeyChar) = -1 Then
             e.Handled = True
         End If
-        
+
     End Sub
 
 
