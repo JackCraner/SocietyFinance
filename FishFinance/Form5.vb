@@ -31,6 +31,20 @@
         Label2.Text = transaction.amount
         Label3.Text = transaction.dateMade
         Label4.Text = transaction.reference
+        DataGridView2.Rows.Clear()
+        Dim counter As Integer = 0
+        For Each expense As Expense In list_expenses
+            If Not (expense.isPaid()) Then
+                DataGridView2.Rows.Add(New String() {expense.name, FormatCurrency(expense.Get_Recoup), FormatCurrency(expense.projected_cost), expense.deadline, expense.IDCode})
+
+
+                If (expense.projected_cost = transaction.amount) Then
+
+                    DataGridView2.Rows(counter).DefaultCellStyle.BackColor = Color.Green
+                End If
+                counter += 1
+            End If
+        Next
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -107,5 +121,9 @@
 
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Me.Close()
+    End Sub
+
+    Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
+
     End Sub
 End Class

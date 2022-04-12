@@ -39,7 +39,7 @@ Public Class Base_Form
     Public Sub End_Expendition(ByRef exp As Expense)
         If (list_of_expenditures.Contains(exp)) Then
             If (exp.isPaid) Then
-                current_Balance -= exp.paidFlag.amount
+                current_Balance += exp.paidFlag.amount
                 list_of_expenditures.Remove(exp)
             Else
                 MsgBox("Expense Not Paid and thus cannot be closed")
@@ -59,10 +59,10 @@ Public Class Base_Form
         DataGridView2.Rows.Clear()
         For Each exp As Expense In list_of_expenditures
             If (exp.isPaid()) Then
-                DataGridView2.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.projected_cost), exp.deadline, exp.IDCode})
+                DataGridView2.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.deadline, exp.IDCode})
             Else
 
-                DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.projected_cost), exp.deadline, exp.IDCode})
+                DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.deadline, exp.IDCode})
             End If
 
         Next
@@ -78,7 +78,7 @@ Public Class Base_Form
                 If (exp.projected_cost = 0) Then
                     temp_balance -= exp.Get_Recoup()
                 Else
-                    temp_balance -= exp.projected_cost
+                    temp_balance = exp.projected_cost
                 End If
             End If
 

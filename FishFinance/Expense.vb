@@ -12,7 +12,7 @@
 
     Public Sub New(ByVal name As String, ByVal amount As Double, Optional ByVal date_to_pay As Date = Nothing)
         Me.name = name
-        Me.projected_cost = amount
+        Me.projected_cost = -amount
         Me.deadline = date_to_pay
 
     End Sub
