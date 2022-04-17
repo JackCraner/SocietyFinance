@@ -14,7 +14,7 @@
     End Sub
 
     Public Function getAmount()
-        Return amount * label
+        Return amount * getLabelResult()
     End Function
     Public Function getABSAmount()
         Return amount
@@ -28,10 +28,18 @@
     Public Function getLabel()
         Return label
     End Function
+    Private Function getLabelResult()
+        If label > 0 Then
+            Return 1
+        Else
+            Return -1
+        End If
+    End Function
 End Class
 
 Public Enum TransactionHandle
     Income = 1
     Outgoing = -1
-    Refund = -1
+    Refund = -2
+
 End Enum

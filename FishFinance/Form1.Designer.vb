@@ -55,6 +55,9 @@ Partial Class Base_Form
         Me.RUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.ToolStripDropDownButton7 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripDropDownButton8 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripDropDownButton9 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +106,7 @@ Partial Class Base_Form
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton6, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton6, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton9, Me.ToolStripDropDownButton8, Me.ToolStripDropDownButton7, Me.ToolStripDropDownButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(885, 27)
@@ -159,6 +162,7 @@ Partial Class Base_Form
         Me.ToolStripDropDownButton5.ShowDropDownArrow = False
         Me.ToolStripDropDownButton5.Size = New System.Drawing.Size(77, 24)
         Me.ToolStripDropDownButton5.Text = "Add Data"
+        Me.ToolStripDropDownButton5.ToolTipText = "Add Data"
         '
         'ToolStripDropDownButton1
         '
@@ -331,6 +335,36 @@ Partial Class Base_Form
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Last Updated:"
         '
+        'ToolStripDropDownButton7
+        '
+        Me.ToolStripDropDownButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButton7.Image = CType(resources.GetObject("ToolStripDropDownButton7.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton7.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton7.Name = "ToolStripDropDownButton7"
+        Me.ToolStripDropDownButton7.ShowDropDownArrow = False
+        Me.ToolStripDropDownButton7.Size = New System.Drawing.Size(44, 24)
+        Me.ToolStripDropDownButton7.Text = "Save"
+        '
+        'ToolStripDropDownButton8
+        '
+        Me.ToolStripDropDownButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButton8.Image = CType(resources.GetObject("ToolStripDropDownButton8.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton8.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton8.Name = "ToolStripDropDownButton8"
+        Me.ToolStripDropDownButton8.ShowDropDownArrow = False
+        Me.ToolStripDropDownButton8.Size = New System.Drawing.Size(46, 24)
+        Me.ToolStripDropDownButton8.Text = "Load"
+        '
+        'ToolStripDropDownButton9
+        '
+        Me.ToolStripDropDownButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButton9.Image = CType(resources.GetObject("ToolStripDropDownButton9.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton9.Name = "ToolStripDropDownButton9"
+        Me.ToolStripDropDownButton9.ShowDropDownArrow = False
+        Me.ToolStripDropDownButton9.Size = New System.Drawing.Size(118, 24)
+        Me.ToolStripDropDownButton9.Text = "Account History"
+        '
         'Base_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -391,5 +425,7 @@ Partial Class Base_Form
     Friend WithEvents RUID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-
+    Friend WithEvents ToolStripDropDownButton7 As ToolStripDropDownButton
+    Friend WithEvents ToolStripDropDownButton8 As ToolStripDropDownButton
+    Friend WithEvents ToolStripDropDownButton9 As ToolStripDropDownButton
 End Class

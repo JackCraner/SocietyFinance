@@ -47,6 +47,7 @@ Public Class Base_Form
             If (exp.isPaid) Then
                 'current_Balance += exp.paidFlag.amount
                 list_of_expenditures.Remove(exp)
+                Form6.Retire_Expense(exp)
             Else
                 MsgBox("Expense Not Paid and thus cannot be closed")
             End If
@@ -57,16 +58,7 @@ Public Class Base_Form
         'ADD expense to account history
         updateALL()
     End Sub
-    Public Sub Cancel_Expedition(ByRef exp As Expense)
-        If (list_of_expenditures.Contains(exp)) Then
-            If exp.isPaid Then
-            Else
-                list_of_expenditures.Remove(exp)
-            End If
-        End If
 
-
-    End Sub
     Public Sub updateALL()
         Dim balance_count As Double = 0
 
@@ -74,7 +66,8 @@ Public Class Base_Form
         DataGridView2.Rows.Clear()
         For Each exp As Expense In list_of_expenditures
             If (exp.isPaid()) Then
-                DataGridView2.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.deadline, exp.IDCode})
+                DataGridView2.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.getPaidFlag.getABSAmount()), exp.deadline, exp.IDCode})
+
             Else
 
                 DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.deadline, exp.IDCode})
@@ -229,5 +222,17 @@ Public Class Base_Form
         Next
         last_time_updated = Date.Today
         updateALL()
+    End Sub
+
+    Private Sub ToolStripDropDownButton7_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton7.Click
+        AccountHistory.Save_Date(list_of_expenditures, Form6.get_history_expenses())
+    End Sub
+
+    Private Sub ToolStripDropDownButton8_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton8.Click
+        AccountHistory.Load_Data()
+    End Sub
+
+    Private Sub ToolStripDropDownButton9_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton9.Click
+        Form6.Start_Form()
     End Sub
 End Class

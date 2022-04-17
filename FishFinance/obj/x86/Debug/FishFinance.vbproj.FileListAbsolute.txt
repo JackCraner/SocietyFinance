@@ -27,3 +27,4 @@ C:\Uni\Year 3\Dissertation\Frisbee\FinanceApp\SocietyFinance\FishFinance\obj\x86
 C:\Uni\Year 3\Dissertation\Frisbee\FinanceApp\SocietyFinance\FishFinance\obj\x86\Debug\FishFinance.exe
 C:\Uni\Year 3\Dissertation\Frisbee\FinanceApp\SocietyFinance\FishFinance\obj\x86\Debug\FishFinance.xml
 C:\Uni\Year 3\Dissertation\Frisbee\FinanceApp\SocietyFinance\FishFinance\obj\x86\Debug\FishFinance.pdb
+C:\Uni\Year 3\Dissertation\Frisbee\FinanceApp\SocietyFinance\FishFinance\obj\x86\Debug\WindowsApplication1.Form6.resources

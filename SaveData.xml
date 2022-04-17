@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SaveData>
+  <Pending />
+  <History>
+    <Expense>
+      <Name>kit</Name>
+      <Topic />
+      <Amount>60</Amount>
+      <Deadline>08/04/2022</Deadline>
+      <PaidFlag>
+        <Transaction>
+          <Name>JOHN HARPUR </Name>
+          <Reference> UMD </Reference>
+          <TransactionType>-1</TransactionType>
+          <Amount>60</Amount>
+          <DateMade>08/04/2022</DateMade>
+        </Transaction>
+      </PaidFlag>
+      <Repayments>
+        <Transaction>
+          <Name>JOHN HARPUR </Name>
+          <Reference> JEQ </Reference>
+          <TransactionType>1</TransactionType>
+          <Amount>20</Amount>
+          <DateMade>11/04/2022</DateMade>
+        </Transaction>
+        <Transaction>
+          <Name>JOHN HARPUR </Name>
+          <Reference> UMD </Reference>
+          <TransactionType>1</TransactionType>
+          <Amount>40</Amount>
+          <DateMade>08/04/2022</DateMade>
+        </Transaction>
+      </Repayments>
+    </Expense>
+  </History>
+</SaveData>

@@ -18,7 +18,7 @@
         transactionFinished = False
         GroupBox1.Visible = False
         GroupBox2.Visible = False
-        If transaction.getAmount() > 0 Then
+        If transaction.getLabel = TransactionHandle.Income Then
             Label11.Text = "Income From:"
         Else
             Label11.Text = "Outgoing To:"
@@ -52,7 +52,7 @@
     End Sub
 
     Private Sub Define_Issue()
-        If transaction.getAmount() > 0 Then
+        If transaction.getLabel = TransactionHandle.Income Then
             'assign to expense or mark as donation
             DataGridView1.Rows.Clear()
             For Each exp As Expense In list_expenses
@@ -91,13 +91,14 @@
         End If
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Dim newExpense As New Expense(TextBox3.Text, transaction.getABSAmount, transaction.dateMade)
+        newExpense.Add_Paid(transaction)
         If RadioButton2.Checked Then
-            Dim newExpense As New Expense(TextBox3.Text, transaction.getABSAmount, transaction.dateMade)
 
-            newExpense.Add_Paid(transaction)
+
             Base_Form.Create_Expenditure(newExpense)
         Else
-            'Base_Form.handle_transaction(transaction)
+            Form6.Retire_Expense(newExpense)
         End If
         Me.Close()
     End Sub

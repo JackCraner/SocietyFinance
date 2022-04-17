@@ -22,10 +22,12 @@
         For Each payment As Transaction In exp.list_of_payments
             DataGridView1.Rows.Add(New String() {payment.name, payment.getABSAmount, payment.dateMade})
         Next
+
         If (exp.isPaid Or exp.list_of_payments.Count > 0) Then
-            Button2.Text = "Cancel Expense"
-        Else
+
             Button2.Text = "End Expense"
+        Else
+            Button2.Text = "Cancel Expense"
         End If
         Base_Form.updateALL()
 
@@ -43,17 +45,6 @@
         Else
 
         End If
-        If (exp.projected_cost = 0) Then
-            Dim new_amount As Double = 0
-            Try
-                new_amount = InputBox("Enter Final Amount to Pay", "Set Amount")
-                exp.Add_Paid(New Transaction(new_amount, "MANUAL", Date.Today))
-            Catch ex As Exception
-                Exit Sub
-            End Try
-
-        End If
-        Base_Form.End_Expendition(exp)
         Me.Visible = False
     End Sub
 
