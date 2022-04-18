@@ -5,12 +5,13 @@ Public Class Base_Form
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         A_Balance_L.Text = "£0"
         Balance_L.Text = "£0"
-
+        account_History.Load_Data()
     End Sub
     Dim list_of_expenditures As New List(Of Expense)
     Public current_Balance As Double = 0
     Dim membership_cost As Double = 0
     Dim last_time_updated As Date = Nothing
+    Dim account_History As New AccountHistory
 
     Public Function Create_UID()
         Dim validchars As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -32,8 +33,8 @@ Public Class Base_Form
         updateALL()
         'add to account history
     End Sub
-    Public Sub Add_History()
-
+    Public Sub set_date(ByRef new_date As Date)
+        last_time_updated = new_date
     End Sub
     Public Sub Create_Expenditure(ByRef expenditure As Expense)
         expenditure.IDCode = Create_UID()
@@ -47,7 +48,7 @@ Public Class Base_Form
             If (exp.isPaid) Then
                 'current_Balance += exp.paidFlag.amount
                 list_of_expenditures.Remove(exp)
-                Form6.Retire_Expense(exp)
+                account_History.Retire_Expense(exp)
             Else
                 MsgBox("Expense Not Paid and thus cannot be closed")
             End If
@@ -58,7 +59,12 @@ Public Class Base_Form
         'ADD expense to account history
         updateALL()
     End Sub
-
+    Public Sub Cancel_Expenditure(ByRef exp As Expense)
+        If (list_of_expenditures.Contains(exp)) Then
+            list_of_expenditures.Remove(exp)
+        End If
+        updateALL()
+    End Sub
     Public Sub updateALL()
         Dim balance_count As Double = 0
 
@@ -162,14 +168,14 @@ Public Class Base_Form
         'Dim highlightedExpenseID = Get_Expense_ID.FindIndex(highlightedID)
         Dim highlightedExpenseID = list_of_expenditures.FindIndex(Function(exp) exp.IDCode = DataGridView1.Rows(e.RowIndex).Cells(4).Value.ToString())
         Manage_Pending_Form.Visible = True
-        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID))
+        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID), True)
     End Sub
 
     Private Sub DataGridView2_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView2.CellDoubleClick
 
         Dim highlightedExpenseID = list_of_expenditures.FindIndex(Function(exp) exp.IDCode = DataGridView2.Rows(e.RowIndex).Cells(4).Value.ToString())
         Manage_Pending_Form.Visible = True
-        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID))
+        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID), True)
     End Sub
 
     Private Sub TextBox1_DragDrop(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DragEventArgs)
@@ -184,7 +190,7 @@ Public Class Base_Form
         Dim xlWorkBook As Excel.Workbook
         Dim xlWorkSheet As Excel.Worksheet
 
-        xlWorkBook = xlApp.Workbooks.Open("C:\Personal Files\Frisbee\test.xlsx")
+        xlWorkBook = xlApp.Workbooks.Open("D:\Personal Files\FrisbeeExec\Finance\SocietyFinance\FishFinance\bin\Debug\Test.xlsx")
         xlWorkSheet = xlWorkBook.Worksheets("sheet1")
         Dim list_unaccounted_in As New List(Of Transaction)
         Dim list_unaccounted_out As New List(Of Transaction)
@@ -216,8 +222,11 @@ Public Class Base_Form
             rowAccounted = False
             counter += 1
         End While
+        If (counter = 4) Then
+            MsgBox("No New Data Found")
+        End If
         For Each Transaction As Transaction In list_unaccounted_out.Concat(list_unaccounted_in)
-            Manage_Transaction_Form.startForm(Transaction, list_of_expenditures)
+            Manage_Transaction_Form.startForm(Transaction, list_of_expenditures, account_History)
             Manage_Transaction_Form.ShowDialog()
         Next
         last_time_updated = Date.Today
@@ -225,14 +234,16 @@ Public Class Base_Form
     End Sub
 
     Private Sub ToolStripDropDownButton7_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton7.Click
-        AccountHistory.Save_Date(list_of_expenditures, Form6.get_history_expenses())
-    End Sub
-
-    Private Sub ToolStripDropDownButton8_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton8.Click
-        AccountHistory.Load_Data()
+        account_History.Save_Date(list_of_expenditures, last_time_updated)
     End Sub
 
     Private Sub ToolStripDropDownButton9_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton9.Click
-        Form6.Start_Form()
+        Form6.Start_Form(account_History)
+    End Sub
+    Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+        Dim answer = MsgBox("Do you want to save", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+        If (answer) Then
+            account_History.Save_Date(list_of_expenditures, last_time_updated)
+        End If
     End Sub
 End Class

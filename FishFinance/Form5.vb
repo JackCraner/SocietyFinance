@@ -1,7 +1,7 @@
 ﻿Public Class Manage_Transaction_Form
     Dim transaction As Transaction
     Dim list_expenses As List(Of Expense)
-
+    Dim account_History As AccountHistory
     Public transactionFinished As Boolean
     Private Sub Manage_Transaction_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Behaviour
@@ -11,10 +11,10 @@
         'Unknown incoming, assign to expense or mark as donation
     End Sub
 
-    Public Sub startForm(ByRef transaction As Transaction, ByRef list_expense As List(Of Expense))
+    Public Sub startForm(ByRef transaction As Transaction, ByRef list_expense As List(Of Expense), ByRef accountHistory As AccountHistory)
         Me.transaction = transaction
         Me.list_expenses = list_expense
-
+        Me.account_History = accountHistory
         transactionFinished = False
         GroupBox1.Visible = False
         GroupBox2.Visible = False
@@ -98,8 +98,9 @@
 
             Base_Form.Create_Expenditure(newExpense)
         Else
-            Form6.Retire_Expense(newExpense)
+            account_History.Retire_Expense(newExpense)
         End If
+
         Me.Close()
     End Sub
 

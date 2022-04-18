@@ -1,9 +1,14 @@
 ﻿Public Class Manage_Pending_Form
     Dim exp As Expense
-    Public Sub startForm(ByRef exp As Expense)
+    Public Sub startForm(ByRef exp As Expense, ByVal isActive As Boolean)
         Me.exp = exp
         TextBox3.Text = exp.IDCode
         updateForm()
+        If (isActive) Then
+            Button2.Visible = True
+        Else
+            Button2.Visible = False
+        End If
     End Sub
     Public Sub updateForm()
         Label1.Text = exp.name
@@ -43,7 +48,7 @@
         If (exp.isPaid) Then
             Base_Form.End_Expendition(exp)
         Else
-
+            Base_Form.Cancel_Expenditure(exp)
         End If
         Me.Visible = False
     End Sub

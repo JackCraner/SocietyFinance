@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Manage_Pending_Form
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Manage_Pending_Form
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -43,7 +43,6 @@ Partial Class Manage_Pending_Form
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -235,22 +234,11 @@ Partial Class Manage_Pending_Form
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 12
         '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(373, 287)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(232, 46)
-        Me.Button3.TabIndex = 14
-        Me.Button3.Text = "Cancel Expenditure"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Manage_Pending_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(721, 345)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Label9)
@@ -294,5 +282,4 @@ Partial Class Manage_Pending_Form
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Button3 As Button
 End Class
