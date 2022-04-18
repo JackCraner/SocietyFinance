@@ -38,6 +38,9 @@
 End Class
 
 Public Enum TransactionHandle
+    Membership = 4
+    Loan = 3
+    Donation = 2
     Income = 1
     Outgoing = -1
     Refund = -2

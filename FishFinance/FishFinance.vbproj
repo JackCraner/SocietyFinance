@@ -73,7 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountHistory.vb" />
+    <Compile Include="AccountPending.vb" />
+    <Compile Include="AccountSettings.vb" />
     <Compile Include="ExcelItem.vb" />
+    <Compile Include="FinanceDataBase.vb" />
     <Compile Include="Form6.Designer.vb">
       <DependentUpon>Form6.vb</DependentUpon>
     </Compile>

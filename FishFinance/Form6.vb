@@ -29,7 +29,7 @@ Public Class Form6
             dtb.Rows.Add(exp.name, exp.getPaidFlag.getABSAmount(), exp.getPaidFlag.dateMade, exp.IDCode)
         Next
         For Each trans As Transaction In list_single_transactions
-            dtb.Rows.Add(trans.name, trans.getABSAmount(), trans.dateMade, "TTT")
+            dtb.Rows.Add(trans.name, trans.getABSAmount(), trans.dateMade, trans.getLabel.ToString)
         Next
         Dim dvw As DataView = dtb.DefaultView
         Dim dtbSorted As DataTable = dvw.ToTable()
@@ -45,6 +45,10 @@ Public Class Form6
         Dim highlightedExpense = list_finished_expenses.Find(Function(exp As Expense) exp.IDCode = DataGridView1.Rows(e.RowIndex).Cells(3).Value.ToString())
         Manage_Pending_Form.Visible = True
         Manage_Pending_Form.startForm(highlightedExpense, False)
+
+    End Sub
+
+    Private Sub Form6_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

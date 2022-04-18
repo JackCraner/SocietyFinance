@@ -30,7 +30,6 @@ Partial Class Base_Form
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripDropDownButton4 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton3 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ToolStripDropDownButton2 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton6 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton5 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton9 = New System.Windows.Forms.ToolStripDropDownButton()
@@ -39,16 +38,9 @@ Partial Class Base_Form
         Me.InitalBalanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MembershipFeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearSaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AccountHistory_LB = New System.Windows.Forms.ListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.PName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PDeadline = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.RName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -57,6 +49,15 @@ Partial Class Base_Form
         Me.RUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PDeadline = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +106,7 @@ Partial Class Base_Form
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton6, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton9, Me.ToolStripDropDownButton7, Me.ToolStripDropDownButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton9, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton6, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton7, Me.ToolStripDropDownButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(885, 27)
@@ -129,18 +130,8 @@ Partial Class Base_Form
         Me.ToolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripDropDownButton3.Name = "ToolStripDropDownButton3"
         Me.ToolStripDropDownButton3.ShowDropDownArrow = False
-        Me.ToolStripDropDownButton3.Size = New System.Drawing.Size(107, 24)
-        Me.ToolStripDropDownButton3.Text = "Add Incoming"
-        '
-        'ToolStripDropDownButton2
-        '
-        Me.ToolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton2.Image = CType(resources.GetObject("ToolStripDropDownButton2.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton2.Name = "ToolStripDropDownButton2"
-        Me.ToolStripDropDownButton2.ShowDropDownArrow = False
-        Me.ToolStripDropDownButton2.Size = New System.Drawing.Size(77, 24)
-        Me.ToolStripDropDownButton2.Text = "Add Loan"
+        Me.ToolStripDropDownButton3.Size = New System.Drawing.Size(49, 24)
+        Me.ToolStripDropDownButton3.Text = "Reset"
         '
         'ToolStripDropDownButton6
         '
@@ -211,16 +202,6 @@ Partial Class Base_Form
         Me.ClearSaveToolStripMenuItem.Size = New System.Drawing.Size(188, 24)
         Me.ClearSaveToolStripMenuItem.Text = "Clear Save"
         '
-        'AccountHistory_LB
-        '
-        Me.AccountHistory_LB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AccountHistory_LB.FormattingEnabled = True
-        Me.AccountHistory_LB.ItemHeight = 16
-        Me.AccountHistory_LB.Location = New System.Drawing.Point(154, 78)
-        Me.AccountHistory_LB.Name = "AccountHistory_LB"
-        Me.AccountHistory_LB.Size = New System.Drawing.Size(222, 324)
-        Me.AccountHistory_LB.TabIndex = 8
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -241,57 +222,20 @@ Partial Class Base_Form
         Me.Label3.TabIndex = 11
         Me.Label3.Text = "Pending Recoupments"
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(156, 55)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(136, 20)
-        Me.Label4.TabIndex = 12
-        Me.Label4.Text = "Account History"
-        '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AllowUserToOrderColumns = True
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PName, Me.PRecoup, Me.PPrice, Me.PDeadline, Me.PUID})
-        Me.DataGridView1.Location = New System.Drawing.Point(389, 78)
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PName, Me.PRecoup, Me.PPrice, Me.Column1, Me.PDeadline, Me.PUID})
+        Me.DataGridView1.Location = New System.Drawing.Point(265, 78)
+        Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(458, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(582, 150)
         Me.DataGridView1.TabIndex = 13
-        '
-        'PName
-        '
-        Me.PName.HeaderText = "Name"
-        Me.PName.Name = "PName"
-        Me.PName.ReadOnly = True
-        '
-        'PRecoup
-        '
-        Me.PRecoup.HeaderText = "Recoupment"
-        Me.PRecoup.Name = "PRecoup"
-        Me.PRecoup.ReadOnly = True
-        '
-        'PPrice
-        '
-        Me.PPrice.HeaderText = "Price"
-        Me.PPrice.Name = "PPrice"
-        Me.PPrice.ReadOnly = True
-        '
-        'PDeadline
-        '
-        Me.PDeadline.HeaderText = "Deadline"
-        Me.PDeadline.Name = "PDeadline"
-        Me.PDeadline.ReadOnly = True
-        '
-        'PUID
-        '
-        Me.PUID.HeaderText = "Expense ID"
-        Me.PUID.Name = "PUID"
         '
         'DataGridView2
         '
@@ -300,10 +244,11 @@ Partial Class Base_Form
         Me.DataGridView2.AllowUserToOrderColumns = True
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.RName, Me.RRecoup, Me.RPaid, Me.RDeadline, Me.RUID})
-        Me.DataGridView2.Location = New System.Drawing.Point(392, 267)
+        Me.DataGridView2.Location = New System.Drawing.Point(265, 267)
+        Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(458, 150)
+        Me.DataGridView2.Size = New System.Drawing.Size(585, 150)
         Me.DataGridView2.TabIndex = 14
         '
         'RName
@@ -354,19 +299,79 @@ Partial Class Base_Form
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Last Updated:"
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(38, 304)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(57, 20)
+        Me.Label4.TabIndex = 19
+        Me.Label4.Text = "Label3"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(16, 267)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(112, 25)
+        Me.Label7.TabIndex = 18
+        Me.Label7.Text = "Predicted"
+        '
+        'PName
+        '
+        Me.PName.HeaderText = "Name"
+        Me.PName.Name = "PName"
+        Me.PName.ReadOnly = True
+        '
+        'PRecoup
+        '
+        Me.PRecoup.HeaderText = "Recoupment"
+        Me.PRecoup.Name = "PRecoup"
+        Me.PRecoup.ReadOnly = True
+        '
+        'PPrice
+        '
+        Me.PPrice.HeaderText = "Price"
+        Me.PPrice.Name = "PPrice"
+        Me.PPrice.ReadOnly = True
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Predicted Payback"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'PDeadline
+        '
+        Me.PDeadline.HeaderText = "Deadline"
+        Me.PDeadline.Name = "PDeadline"
+        Me.PDeadline.ReadOnly = True
+        '
+        'PUID
+        '
+        Me.PUID.HeaderText = "Expense ID"
+        Me.PUID.Name = "PUID"
+        Me.PUID.ReadOnly = True
+        '
         'Base_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(885, 429)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.DataGridView2)
         Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.AccountHistory_LB)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.A_Balance_L)
         Me.Controls.Add(Me.Label2)
@@ -390,23 +395,15 @@ Partial Class Base_Form
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents InitalBalanceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MembershipFeeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AccountHistory_LB As System.Windows.Forms.ListBox
-    Friend WithEvents ToolStripDropDownButton2 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ToolStripDropDownButton4 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ToolStripDropDownButton3 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ClearSaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents ToolStripDropDownButton5 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
     Friend WithEvents ToolStripDropDownButton6 As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents PName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PRecoup As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PPrice As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PDeadline As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PUID As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RRecoup As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RPaid As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -416,4 +413,13 @@ Partial Class Base_Form
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents ToolStripDropDownButton7 As ToolStripDropDownButton
     Friend WithEvents ToolStripDropDownButton9 As ToolStripDropDownButton
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents PName As DataGridViewTextBoxColumn
+    Friend WithEvents PRecoup As DataGridViewTextBoxColumn
+    Friend WithEvents PPrice As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents PDeadline As DataGridViewTextBoxColumn
+    Friend WithEvents PUID As DataGridViewTextBoxColumn
 End Class

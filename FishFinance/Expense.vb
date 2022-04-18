@@ -2,6 +2,7 @@
 
     Public name As String
     Public projected_cost As Double
+    Public projected_payback As Double
     Public deadline As Date
 
 
@@ -18,10 +19,10 @@
     End Sub
 
     Public Sub Add_Income(ByRef payment As Transaction)
-        If (payment.getLabel = TransactionHandle.Income) Then
+        If (payment.getLabel > 0) Then
 
             list_of_payments.Add(payment)
-            Base_Form.Handle_Transaction(payment)
+            Base_Form.account_Pending.Handle_Transaction(payment)
         Else
             MsgBox("Invalid Income")
         End If
@@ -30,7 +31,7 @@
     Public Sub Remove_Payment(ByRef payment As Transaction)
         If (list_of_payments.Contains(payment)) Then
             payment.updateTransactionLabel(TransactionHandle.Refund)
-            Base_Form.Handle_Transaction(payment)
+            Base_Form.account_Pending.Handle_Transaction(payment)
             list_of_payments.Remove(payment)
         Else
             MsgBox("Payment Not Found")
@@ -40,7 +41,7 @@
     Public Sub Add_Paid(ByRef payment As Transaction)
         If (payment.getLabel = TransactionHandle.Outgoing) Then
             paidFlag = payment
-            Base_Form.Handle_Transaction(payment)
+            Base_Form.account_Pending.Handle_Transaction(payment)
         Else
             MsgBox("Failed assigning Flag")
         End If
@@ -65,6 +66,13 @@
     Public Function hasTopic()
         Return Not expense_topic Is Nothing
     End Function
+    Public Function getProjectedPayback()
+        Return projected_payback
+    End Function
+    Public Sub SetPayBack(ByVal amount As Double)
+        projected_payback = amount
+        Base_Form.updateALL()
+    End Sub
 
     ''ability to partial pay but only for pending payments
 End Class

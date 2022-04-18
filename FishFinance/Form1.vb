@@ -2,143 +2,50 @@
 Imports System.Data
 Public Class Base_Form
 
+    Public account_History As New AccountHistory
+    Public account_Pending As New AccountPending
+    Public account_Settings As New AccountSettings
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         A_Balance_L.Text = "£0"
         Balance_L.Text = "£0"
-        account_History.Load_Data()
+        account_History.Read_Data(account_Pending, account_Settings)
     End Sub
-    Dim list_of_expenditures As New List(Of Expense)
-    Public current_Balance As Double = 0
-    Dim membership_cost As Double = 0
-    Dim last_time_updated As Date = Nothing
-    Dim account_History As New AccountHistory
-
-    Public Function Create_UID()
-        Dim validchars As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-        Dim sb As New System.Text.StringBuilder()
-        Dim rand As New Random()
-        For i As Integer = 1 To 3
-            Dim idx As Integer = rand.Next(0, validchars.Length)
-            Dim randomChar As Char = validchars(idx)
-            sb.Append(randomChar)
-        Next i
-
-
-        Return sb.ToString()
-    End Function
-    Public Sub Handle_Transaction(ByRef transaction As Transaction)
-        current_Balance += transaction.getAmount()
-
-        updateALL()
-        'add to account history
-    End Sub
-    Public Sub set_date(ByRef new_date As Date)
-        last_time_updated = new_date
-    End Sub
-    Public Sub Create_Expenditure(ByRef expenditure As Expense)
-        expenditure.IDCode = Create_UID()
-        list_of_expenditures.Add(expenditure)
-
-        updateALL()
-
-    End Sub
-    Public Sub End_Expendition(ByRef exp As Expense)
-        If (list_of_expenditures.Contains(exp)) Then
-            If (exp.isPaid) Then
-                'current_Balance += exp.paidFlag.amount
-                list_of_expenditures.Remove(exp)
-                account_History.Retire_Expense(exp)
-            Else
-                MsgBox("Expense Not Paid and thus cannot be closed")
-            End If
-
-        Else
-            MsgBox("No Expense Found")
-        End If
-        'ADD expense to account history
-        updateALL()
-    End Sub
-    Public Sub Cancel_Expenditure(ByRef exp As Expense)
-        If (list_of_expenditures.Contains(exp)) Then
-            list_of_expenditures.Remove(exp)
-        End If
+    Public Sub ClearALL()
+        account_History = New AccountHistory
+        account_Pending = New AccountPending
+        account_Settings = New AccountSettings
         updateALL()
     End Sub
     Public Sub updateALL()
-        Dim balance_count As Double = 0
+
 
         DataGridView1.Rows.Clear()
         DataGridView2.Rows.Clear()
-        For Each exp As Expense In list_of_expenditures
+        For Each exp As Expense In account_Pending.Get_Expenses()
             If (exp.isPaid()) Then
                 DataGridView2.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.getPaidFlag.getABSAmount()), exp.deadline, exp.IDCode})
 
             Else
 
-                DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.deadline, exp.IDCode})
+                DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(Math.Abs(exp.projected_cost)), exp.getProjectedPayback, exp.deadline, exp.IDCode})
             End If
 
         Next
 
-        Label5.Text = last_time_updated
-        Balance_L.Text = current_Balance
-        calculateAvaliableBalance()
+        Label5.Text = account_Settings.get_LUD
+        Balance_L.Text = account_Pending.Get_Current_Balance
+        A_Balance_L.Text = account_Pending.Get_Ava_Balance
+        Label4.Text = account_Pending.Get_Predicted_Balance
     End Sub
-    Public Sub calculateAvaliableBalance()
-        Dim temp_balance As Double = current_Balance
-        For Each exp As Expense In list_of_expenditures
-            If Not (exp.isPaid) Then
-                If (exp.projected_cost = 0) Then
-                    temp_balance -= exp.Get_Recoup()
-                Else
-                    temp_balance -= exp.projected_cost
-                End If
-            End If
 
-
-
-        Next
-        A_Balance_L.Text = temp_balance
-    End Sub
-    Public Function Get_Topics()
-        Dim list_topics As New List(Of Topic)
-        For Each exp As Expense In list_of_expenditures
-            If exp.hasTopic() And Not list_topics.Contains(exp.expense_topic) Then
-                list_topics.Add(exp.expense_topic)
-            End If
-        Next
-        Return list_topics
-    End Function
-
-    Public Function Set_Topic(ByVal name As String)
-        Dim test As List(Of Topic) = Get_Topics()
-        Dim found_topic = test.Find(Function(t As Topic) t.topicID = Topic.convert_name_ID(name))
-        If (IsNothing(found_topic)) Then
-            Return New Topic(name)
-        Else
-            Return found_topic
-        End If
-
-    End Function
-
-    Private Sub InitalBalanceToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InitalBalanceToolStripMenuItem.Click
-        Try
-            current_Balance = InputBox("Enter Current Balance", "Set Balance")
-        Catch ex As Exception
-
-        End Try
-
-        Balance_L.Text = current_Balance
-    End Sub
 
 
 
     Private Sub MembershipFeeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MembershipFeeToolStripMenuItem.Click
         Try
-            membership_cost = InputBox("Enter Membership Price", "Enter Price")
+            account_Settings.Set_MembershipCost(InputBox("Enter Membership Price", "Enter Price"))
         Catch ex As Exception
-
+            MsgBox("Membership Cost Failed")
         End Try
     End Sub
 
@@ -148,17 +55,7 @@ Public Class Base_Form
     End Sub
 
     Private Sub ToolStripDropDownButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton3.Click
-
-    End Sub
-
-    Private Sub ToolStripDropDownButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton2.Click
-        Try
-            Dim numberOfMembers As Integer = InputBox("How Many Members to Add", "Adding Membership Numbers")
-            current_Balance += numberOfMembers * membership_cost
-            updateALL()
-        Catch ex As Exception
-            MsgBox("Error with Input")
-        End Try
+        ClearALL()
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
@@ -166,16 +63,16 @@ Public Class Base_Form
         ' Manage_Pending_Form.startForm(list_of_pendingexpenditures(DataGridView1.CurrentRow.Index))
         'Dim highlightedID = DataGridView1.Rows(e.RowIndex).Cells(4).Value.ToString()
         'Dim highlightedExpenseID = Get_Expense_ID.FindIndex(highlightedID)
-        Dim highlightedExpenseID = list_of_expenditures.FindIndex(Function(exp) exp.IDCode = DataGridView1.Rows(e.RowIndex).Cells(4).Value.ToString())
+        Dim highlightedExpenseID = account_Pending.Get_Expenses.FindIndex(Function(exp) exp.IDCode = DataGridView1.Rows(e.RowIndex).Cells(5).Value.ToString())
         Manage_Pending_Form.Visible = True
-        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID), True)
+        Manage_Pending_Form.startForm(account_Pending.Get_Expenses(highlightedExpenseID), True)
     End Sub
 
     Private Sub DataGridView2_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView2.CellDoubleClick
 
-        Dim highlightedExpenseID = list_of_expenditures.FindIndex(Function(exp) exp.IDCode = DataGridView2.Rows(e.RowIndex).Cells(4).Value.ToString())
+        Dim highlightedExpenseID = account_Pending.Get_Expenses.FindIndex(Function(exp) exp.IDCode = DataGridView2.Rows(e.RowIndex).Cells(4).Value.ToString())
         Manage_Pending_Form.Visible = True
-        Manage_Pending_Form.startForm(list_of_expenditures(highlightedExpenseID), True)
+        Manage_Pending_Form.startForm(account_Pending.Get_Expenses(highlightedExpenseID), True)
     End Sub
 
     Private Sub TextBox1_DragDrop(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DragEventArgs)
@@ -185,23 +82,51 @@ Public Class Base_Form
     Private Sub ToolStripDropDownButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton5.Click
         'Fix Drag and Drop https://stackoverflow.com/questions/11686631/drag-drop-and-get-file-path-in-vb-net
 
+        If OpenFileDialog1.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+            Dim checkFile As New IO.FileInfo(OpenFileDialog1.FileName)
+            If (checkFile.Extension = ".csv" Or checkFile.Extension = ".xlsx" Or checkFile.Extension = ".xls") Then
+                Add_Data(OpenFileDialog1.FileName)
+                account_Settings.set_LUD(Date.Today) 'should update to date of most recent transaction
+            Else
+                MsgBox("Incorret File Type")
+            End If
+        End If
 
+        updateALL()
+    End Sub
+
+    Private Sub ToolStripDropDownButton7_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton7.Click
+        account_History.Save_Date(account_Pending, account_Settings)
+    End Sub
+
+    Private Sub ToolStripDropDownButton9_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton9.Click
+        Form6.Start_Form(account_History)
+    End Sub
+    Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+        Dim answer = MsgBox("Do you want to save", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+        If (answer = MsgBoxResult.Yes) Then
+            account_History.Save_Date(account_Pending, account_Settings)
+        End If
+    End Sub
+
+
+    Public Sub Add_Data(ByVal fileName As String)
         Dim xlApp As New Excel.Application
         Dim xlWorkBook As Excel.Workbook
         Dim xlWorkSheet As Excel.Worksheet
 
-        xlWorkBook = xlApp.Workbooks.Open("D:\Personal Files\FrisbeeExec\Finance\SocietyFinance\FishFinance\bin\Debug\Test.xlsx")
+        xlWorkBook = xlApp.Workbooks.Open(fileName)
         xlWorkSheet = xlWorkBook.Worksheets("sheet1")
         Dim list_unaccounted_in As New List(Of Transaction)
         Dim list_unaccounted_out As New List(Of Transaction)
         Dim counter As Integer = 4
         Dim rowAccounted As Boolean = False
         'filters out dates which have already been updated
-        While (Not (xlWorkSheet.Cells(counter, 1).Value = Nothing)) And (DateTime.Compare(xlWorkSheet.Cells(counter, 1).Value, last_time_updated) >= 0)
+        While (Not (xlWorkSheet.Cells(counter, 1).Value = Nothing)) And (DateTime.Compare(xlWorkSheet.Cells(counter, 1).Value, account_Settings.get_LUD) >= 0)
             Dim transactionID As String = xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(1)
             Dim newTransaction As New ExcelItem(xlWorkSheet.Cells(counter, 4).Value, xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(0), transactionID, xlWorkSheet.Cells(counter, 1).Value)
             If newTransaction.amount >= 0 Then
-                For Each expense As Expense In list_of_expenditures
+                For Each expense As Expense In account_Pending.Get_Expenses()
                     If transactionID.Contains(expense.IDCode) Then  'THis is a worry, make more strict
                         expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
                         rowAccounted = True
@@ -226,24 +151,8 @@ Public Class Base_Form
             MsgBox("No New Data Found")
         End If
         For Each Transaction As Transaction In list_unaccounted_out.Concat(list_unaccounted_in)
-            Manage_Transaction_Form.startForm(Transaction, list_of_expenditures, account_History)
+            Manage_Transaction_Form.startForm(Transaction, account_Pending, account_History)
             Manage_Transaction_Form.ShowDialog()
         Next
-        last_time_updated = Date.Today
-        updateALL()
-    End Sub
-
-    Private Sub ToolStripDropDownButton7_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton7.Click
-        account_History.Save_Date(list_of_expenditures, last_time_updated)
-    End Sub
-
-    Private Sub ToolStripDropDownButton9_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton9.Click
-        Form6.Start_Form(account_History)
-    End Sub
-    Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-        Dim answer = MsgBox("Do you want to save", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
-        If (answer) Then
-            account_History.Save_Date(list_of_expenditures, last_time_updated)
-        End If
     End Sub
 End Class

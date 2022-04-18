@@ -2,30 +2,24 @@
 Imports System.Data.SqlClient
 Imports System.ComponentModel
 Public Class AccountHistory
-
-
-    Dim list_finished_expenses As New List(Of Expense)
-    Dim list_single_transactions As New List(Of Transaction)
-
+    Inherits FinanceDataBase
+    Dim list_transactions As New List(Of Transaction)
     Public Sub New()
 
     End Sub
-
-    Public Sub Retire_Expense(ByRef exp As Expense)
-        list_finished_expenses.Add(exp)
+    Public Sub Add_Transaction(ByRef trans As Transaction)
+        list_transactions.Add(trans)
+        Base_Form.updateALL()
     End Sub
-
-    Public Sub Retire_Transaction(ByRef trans As Transaction)
-        list_single_transactions.Add(trans)
+    Public Sub Remove_Transaction(ByRef trans As Transaction)
+        list_transactions.Remove(trans)
+        Base_Form.updateALL()
     End Sub
+    Public Function Get_Transactions() As List(Of Transaction)
+        Return list_transactions
+    End Function
 
-    Public Function Get_Expenses()
-        Return list_finished_expenses
-    End Function
-    Public Function Get_Transactions()
-        Return list_single_transactions
-    End Function
-    Public Sub Save_Date(ByRef expenses As List(Of Expense), ByRef last_date As Date)
+    Public Sub Save_Date(ByRef account_pending As AccountPending, ByRef account_Settings As AccountSettings)
         Dim writer As New XmlTextWriter("SaveData.xml", System.Text.Encoding.UTF8)
         Try
             writer.WriteStartDocument(True)
@@ -38,22 +32,22 @@ Public Class AccountHistory
             writer.WriteString("Frisbee")
             writer.WriteEndElement()
             writer.WriteStartElement("LastDate")
-            writer.WriteString(last_date)
+            writer.WriteString(account_Settings.get_LUD)
             writer.WriteEndElement()
             writer.WriteEndElement()
             writer.WriteStartElement("Pending")
-            For Each exp As Expense In expenses
+            For Each exp As Expense In account_pending.Get_Expenses()
                 Save_Data_Expense(writer, exp)
             Next
-            If (expenses.Count = 0) Then
+            If (account_pending.Get_Expenses().Count = 0) Then
                 writer.WriteString(Nothing)
             End If
             writer.WriteEndElement()
             writer.WriteStartElement("History")
-            For Each exp As Expense In list_finished_expenses
+            For Each exp As Expense In MyBase.Get_Expenses()
                 Save_Data_Expense(writer, exp)
             Next
-            If (list_finished_expenses.Count = 0) Then
+            If (MyBase.Get_Expenses().Count = 0) Then
                 writer.WriteString(Nothing)
             End If
             writer.WriteEndElement()
@@ -67,7 +61,7 @@ Public Class AccountHistory
         End Try
 
     End Sub
-    Public Sub Load_Data()
+    Public Sub Read_Data(ByRef account_pending As AccountPending, ByRef account_Settings As AccountSettings)
         Dim reader As New XmlTextReader("SaveData.xml")
         Try
 
@@ -84,7 +78,7 @@ Public Class AccountHistory
                                 End If
                                 If (reader.Name = "Expense") Then
                                     'list_expenses.Add(Load_Data_Expense(reader))
-                                    Base_Form.Create_Expenditure(Load_Data_Expense(reader))
+                                    account_pending.Add_Expense(Load_Data_Expense(reader))
                                 ElseIf (reader.Name = "Transaction") Then
                                     MsgBox("Test1")
 
@@ -98,7 +92,7 @@ Public Class AccountHistory
                             If (reader.Name = "Expense") Then
                                 'list_expenses.Add(Load_Data_Expense(reader))
 
-                                Retire_Expense((Load_Data_Expense(reader)))
+                                Add_Expense((Load_Data_Expense(reader)))
                             ElseIf (reader.Name = "Transaction") Then
                                 MsgBox("Test1")
 
@@ -107,7 +101,7 @@ Public Class AccountHistory
                     ElseIf (reader.Name = "Settings") Then
                         While (reader.Read())
                             If (reader.NodeType = XmlNodeType.Element And reader.Name = "LastDate") Then
-                                Base_Form.set_date(Load_Next_String(reader))
+                                account_Settings.set_LUD(Load_Next_String(reader))
                             End If
                             If (reader.NodeType = XmlNodeType.EndElement And reader.Name = "Settings") Then
                                 Exit While

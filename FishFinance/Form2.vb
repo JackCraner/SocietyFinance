@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Public Class Define_Expenditure
-
+    Dim startPoint As Transaction
     Private Sub B_Submit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles B_Submit.Click
         Dim amount As Double = 0
         If Not TextBox2.Text = "" Then
@@ -12,9 +12,14 @@ Public Class Define_Expenditure
 
         If (Not ComboBox1.Text = "") Then
 
-            new_exp.expense_topic = Base_Form.Set_Topic(ComboBox1.Text)
+            new_exp.expense_topic = Base_Form.account_Pending.Set_Topic(ComboBox1.Text)
         End If
-        Base_Form.Create_Expenditure(new_exp)
+
+        If Not (IsNothing(startPoint)) Then
+            new_exp.Add_Income(startPoint)
+            Manage_Transaction_Form.Close()
+        End If
+        Base_Form.account_Pending.Add_Expense(new_exp)
         Me.Close()
     End Sub
 
@@ -23,10 +28,11 @@ Public Class Define_Expenditure
         TextBox2.Visible = False
     End Sub
 
-    Public Sub reset()
+    Public Sub reset(Optional ByRef trans As Transaction = Nothing)
         TextBox1.Text = ""
         TextBox2.Text = ""
-        For Each t In Base_Form.Get_Topics()
+        Me.startPoint = trans
+        For Each t In Base_Form.account_Pending.get_Topics()
             ComboBox1.Items.Add(t.name)
         Next
         'Dim nameList As List(Of String) = From name In tempList Select name.name

@@ -24,10 +24,7 @@ Partial Class Manage_Pending_Form
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -43,6 +40,7 @@ Partial Class Manage_Pending_Form
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -59,56 +57,29 @@ Partial Class Manage_Pending_Form
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(135, 65)
+        Me.GroupBox1.Location = New System.Drawing.Point(602, 85)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(200, 199)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Make Payment"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(39, 27)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(51, 20)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Name"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(42, 48)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 26)
-        Me.TextBox2.TabIndex = 3
+        Me.GroupBox1.Text = "Add Expected Payback"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(56, 147)
+        Me.Button1.Location = New System.Drawing.Point(22, 101)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 37)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(39, 92)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Amount"
-        '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(42, 115)
+        Me.TextBox1.Location = New System.Drawing.Point(22, 69)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 26)
         Me.TextBox1.TabIndex = 0
@@ -116,7 +87,7 @@ Partial Class Manage_Pending_Form
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(135, 285)
+        Me.Button2.Location = New System.Drawing.Point(176, 274)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(232, 46)
         Me.Button2.TabIndex = 2
@@ -167,7 +138,7 @@ Partial Class Manage_Pending_Form
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(350, 42)
+        Me.Label8.Location = New System.Drawing.Point(172, 77)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(172, 20)
         Me.Label8.TabIndex = 8
@@ -179,10 +150,11 @@ Partial Class Manage_Pending_Form
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PayeeName, Me.Amount, Me.DatePaid})
-        Me.DataGridView1.Location = New System.Drawing.Point(354, 77)
+        Me.DataGridView1.Location = New System.Drawing.Point(176, 111)
+        Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(355, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(411, 150)
         Me.DataGridView1.TabIndex = 9
         '
         'PayeeName
@@ -234,11 +206,20 @@ Partial Class Manage_Pending_Form
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 12
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(18, 39)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(65, 20)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Amount"
+        '
         'Manage_Pending_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(721, 345)
+        Me.ClientSize = New System.Drawing.Size(837, 365)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Label9)
@@ -263,10 +244,7 @@ Partial Class Manage_Pending_Form
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -282,4 +260,5 @@ Partial Class Manage_Pending_Form
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label2 As Label
 End Class

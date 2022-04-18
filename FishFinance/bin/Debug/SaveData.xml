@@ -2,41 +2,8 @@
 <SaveData>
   <Settings>
     <Name>Frisbee</Name>
-    <LastDate>18/04/2022</LastDate>
+    <LastDate>00:00:00</LastDate>
   </Settings>
   <Pending />
-  <History>
-    <Expense>
-      <Name>Kit</Name>
-      <Topic />
-      <Amount>0</Amount>
-      <Deadline>07/04/2022</Deadline>
-      <PaidFlag>
-        <Transaction>
-          <Name>NATHAN LEADBETTER </Name>
-          <Reference> NATHANJUMPERHOODY </Reference>
-          <TransactionType>-1</TransactionType>
-          <Amount>50</Amount>
-          <DateMade>07/04/2022</DateMade>
-        </Transaction>
-      </PaidFlag>
-      <Repayments>
-        <Transaction>
-          <Name>ARUODZIUTE I </Name>
-          <Reference> INDRE - DISC </Reference>
-          <TransactionType>1</TransactionType>
-          <Amount>30</Amount>
-          <DateMade>12/04/2022</DateMade>
-        </Transaction>
-        <Transaction>
-          <Name>JOHN HARPUR </Name>
-          <Reference> FISHBOWL DISKS X2 </Reference>
-          <TransactionType>1</TransactionType>
-          <Amount>20</Amount>
-          <DateMade>08/04/2022</DateMade>
-        </Transaction>
-      </Repayments>
-      <ID>LRV</ID>
-    </Expense>
-  </History>
+  <History />
 </SaveData>

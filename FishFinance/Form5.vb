@@ -1,6 +1,6 @@
 ﻿Public Class Manage_Transaction_Form
     Dim transaction As Transaction
-    Dim list_expenses As List(Of Expense)
+    Dim account_Pending As AccountPending
     Dim account_History As AccountHistory
     Public transactionFinished As Boolean
     Private Sub Manage_Transaction_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -11,9 +11,9 @@
         'Unknown incoming, assign to expense or mark as donation
     End Sub
 
-    Public Sub startForm(ByRef transaction As Transaction, ByRef list_expense As List(Of Expense), ByRef accountHistory As AccountHistory)
+    Public Sub startForm(ByRef transaction As Transaction, ByRef accountPending As AccountPending, ByRef accountHistory As AccountHistory)
         Me.transaction = transaction
-        Me.list_expenses = list_expense
+        Me.account_Pending = accountPending
         Me.account_History = accountHistory
         transactionFinished = False
         GroupBox1.Visible = False
@@ -27,13 +27,15 @@
         updateForm()
     End Sub
     Public Sub updateForm()
+
         Label1.Text = transaction.name
         Label2.Text = transaction.getABSAmount
         Label3.Text = transaction.dateMade
         Label4.Text = transaction.reference
         DataGridView2.Rows.Clear()
+        RadioButton3.Select()
         Dim counter As Integer = 0
-        For Each expense As Expense In list_expenses
+        For Each expense As Expense In account_Pending.Get_Expenses()
             If Not (expense.isPaid()) Then
                 DataGridView2.Rows.Add(New String() {expense.name, FormatCurrency(expense.Get_Recoup), FormatCurrency(expense.projected_cost), expense.deadline, expense.IDCode})
 
@@ -45,6 +47,7 @@
                 counter += 1
             End If
         Next
+
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -52,11 +55,11 @@
     End Sub
 
     Private Sub Define_Issue()
-        If transaction.getLabel = TransactionHandle.Income Then
+        If transaction.getLabel > 0 Then
             'assign to expense or mark as donation
+            GroupBox2.Visible = True
             DataGridView1.Rows.Clear()
-            For Each exp As Expense In list_expenses
-                GroupBox2.Visible = True
+            For Each exp As Expense In account_Pending.Get_Expenses()
                 DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.projected_cost), exp.deadline, exp.IDCode})
             Next
         Else
@@ -65,23 +68,10 @@
 
 
 
-            For Each exp As Expense In list_expenses
-                If (exp.projected_cost = transaction.getABSAmount And Not exp.isPaid) Then
-                    Dim answer As Integer = MsgBox("Is {" + transaction.name + ", " + transaction.reference + ", £" + CStr(transaction.getABSAmount) + "}" + " = " + exp.name + " ?", vbQuestion + vbYesNo + vbDefaultButton2, "Detected Expense Match")
-                    If answer = vbYes Then
-                        answer = MsgBox("Are you still waiting for recoupments?", vbQuestion + vbYesNo + vbDefaultButton2, "Defining Expense")
-                        If answer = vbYes Then
-                            exp.Add_Paid(transaction)
-                        Else
-                            Base_Form.End_Expendition(exp)
-                        End If
-                        Exit Sub
-                    End If
-                End If
-            Next
+
 
             'assign as straight payment or recoup expense
-
+            TextBox3.Text = transaction.name
             Label9.Text = transaction.getABSAmount
             GroupBox1.Visible = True
 
@@ -89,6 +79,7 @@
 
 
         End If
+
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim newExpense As New Expense(TextBox3.Text, transaction.getABSAmount, transaction.dateMade)
@@ -96,30 +87,69 @@
         If RadioButton2.Checked Then
 
 
-            Base_Form.Create_Expenditure(newExpense)
+            account_Pending.Add_Expense(newExpense)
         Else
-            account_History.Retire_Expense(newExpense)
+            account_History.Add_Expense(newExpense)
         End If
 
         Me.Close()
     End Sub
 
-    Private Sub DataGridView1_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-
-        list_expenses(DataGridView1.CurrentRow.Index).Add_Income(transaction)
-        Me.Close()
-    End Sub
-
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Base_Form.handle_transaction(transaction)
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        account_Pending.Handle_Transaction(transaction)
         Me.Close()
     End Sub
 
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim answer = MsgBox("Are you sure", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+        If answer = MsgBoxResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
+        Define_Expenditure.reset(transaction)
+        Define_Expenditure.Visible = True
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        If RadioButton3.Checked Then
+            transaction.updateTransactionLabel(TransactionHandle.Income)
+        ElseIf RadioButton4.Checked Then
+            transaction.updateTransactionLabel(TransactionHandle.Donation)
+        ElseIf RadioButton5.Checked Then
+            transaction.updateTransactionLabel(TransactionHandle.Loan)
+        ElseIf RadioButton6.Created Then
+            transaction.updateTransactionLabel(TransactionHandle.Membership)
+        End If
+        If (DataGridView1.SelectedRows.Count > 0) Then
+            account_Pending.Get_Expense(DataGridView1.SelectedCells(4).Value.ToString()).Add_Income(transaction)
+        Else
+            account_Pending.Handle_Transaction(transaction)
+            account_History.Add_Transaction(transaction)
+        End If
         Me.Close()
     End Sub
 
-    Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
 
+    Private Sub DataGridView1_MouseUp(sender As Object, e As MouseEventArgs) Handles DataGridView1.MouseUp
+        If e.Button = MouseButtons.Left Then
+            ''# Check the HitTest information for this click location
+            If Equals(DataGridView1.HitTest(e.X, e.Y), DataGridView.HitTestInfo.Nowhere) Then
+                DataGridView1.ClearSelection()
+                DataGridView1.CurrentCell = Nothing
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridView2_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentDoubleClick
+        Dim highlightedExpenseID As Expense = account_Pending.Get_Expenses.Find(Function(exp) exp.IDCode = DataGridView2.Rows(e.RowIndex).Cells(4).Value.ToString())
+        Dim answer = MsgBox("Is this Expense Completely Finised?", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+        highlightedExpenseID.Add_Paid(transaction)
+        If answer = MsgBoxResult.Yes Then
+            account_Pending.Remove_Expense(highlightedExpenseID)
+            account_History.Add_Expense(highlightedExpenseID)
+        End If
+        Me.Close()
     End Sub
 End Class
