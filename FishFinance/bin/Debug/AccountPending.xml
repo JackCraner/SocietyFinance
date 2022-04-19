@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AccountPending xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <list_expense />
+  <list_expense>
+    <Expense>
+      <name>Test</name>
+      <projected_cost>22</projected_cost>
+      <projected_payback>40</projected_payback>
+      <deadline>2022-04-19T00:00:00+01:00</deadline>
+      <list_of_payments />
+      <IDCode>YBB</IDCode>
+    </Expense>
+  </list_expense>
   <current_Balance>0</current_Balance>
 </AccountPending>

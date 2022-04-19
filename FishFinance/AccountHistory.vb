@@ -29,16 +29,5 @@ Public Class AccountHistory
         Return list_transactions
     End Function
 
-    Private Class HistoryItem
-        Dim name, amount As String
-        Dim dateOccured As Date
-        Dim attachedExpense As Expense
-        Dim transaction_type As TransactionHandle
-        Public Sub New(ByRef transaction As Transaction)
 
-        End Sub
-        Public Sub New(ByRef expense As Expense)
-
-        End Sub
-    End Class
 End Class
