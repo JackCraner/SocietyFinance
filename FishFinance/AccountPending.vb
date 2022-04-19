@@ -1,9 +1,11 @@
-﻿Public Class AccountPending
+﻿<Serializable()>
+Public Class AccountPending
     Inherits FinanceDataBase
 
-    Dim current_Balance As Double
+    Public current_Balance As Double
+
     Public Sub New()
-        MyBase.New()
+
         Me.current_Balance = 0
     End Sub
     Public Overrides Sub Add_Expenses(ByRef expList As List(Of Expense))

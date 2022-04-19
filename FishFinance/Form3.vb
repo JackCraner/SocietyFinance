@@ -35,6 +35,12 @@
 
             Button2.Text = "Return Expense"
         End If
+
+        If (exp.isPaid) Then
+            Label3.Text = exp.getPaidFlag.name
+            Label11.Text = exp.getPaidFlag.amount
+            Label12.Text = exp.getPaidFlag.dateMade
+        End If
         Base_Form.updateALL()
 
     End Sub

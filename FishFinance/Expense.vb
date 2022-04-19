@@ -1,16 +1,19 @@
-﻿Public Class Expense
+﻿Imports System.Xml.Serialization
+
+<Serializable()>
+Public Class Expense
 
     Public name As String
     Public projected_cost As Double
     Public projected_payback As Double
     Public deadline As Date
-
-
     Public list_of_payments As New List(Of Transaction)
     Public IDCode As String
-    Private paidFlag As Transaction
+    Public paidFlag As Transaction
     Public expense_topic As Topic
+    Public Sub New()
 
+    End Sub
     Public Sub New(ByVal name As String, ByVal amount As Double, Optional ByVal date_to_pay As Date = Nothing)
         Me.name = name
         Me.projected_cost = amount
@@ -49,7 +52,7 @@
         'Base_Form
 
     End Sub
-    Public Function getPaidFlag()
+    Public Function getPaidFlag() As Transaction
         Return paidFlag
     End Function
     Public Function Get_Recoup()

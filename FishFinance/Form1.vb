@@ -1,5 +1,7 @@
 ﻿Imports Excel = Microsoft.Office.Interop.Excel
 Imports System.Data
+Imports System.Xml.Serialization
+Imports System.IO
 Public Class Base_Form
 
     Public account_History As New AccountHistory
@@ -8,7 +10,10 @@ Public Class Base_Form
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         A_Balance_L.Text = "£0"
         Balance_L.Text = "£0"
-        account_History.Read_Data(account_Pending, account_Settings)
+        Read_Data()
+
+
+
     End Sub
     Public Sub ClearALL()
         account_History = New AccountHistory
@@ -96,7 +101,7 @@ Public Class Base_Form
     End Sub
 
     Private Sub ToolStripDropDownButton7_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton7.Click
-        account_History.Save_Date(account_Pending, account_Settings)
+        Save_Data()
     End Sub
 
     Private Sub ToolStripDropDownButton9_Click(sender As Object, e As EventArgs) Handles ToolStripDropDownButton9.Click
@@ -105,7 +110,7 @@ Public Class Base_Form
     Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
         Dim answer = MsgBox("Do you want to save", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
         If (answer = MsgBoxResult.Yes) Then
-            account_History.Save_Date(account_Pending, account_Settings)
+            Save_Data()
         End If
     End Sub
 
@@ -154,5 +159,71 @@ Public Class Base_Form
             Manage_Transaction_Form.startForm(Transaction, account_Pending, account_History)
             Manage_Transaction_Form.ShowDialog()
         Next
+    End Sub
+
+    Public Sub Read_Data()
+        Try
+            Dim reader1 As New System.Xml.Serialization.XmlSerializer(GetType(AccountPending))
+            Dim file1 As New System.IO.StreamReader(
+           "AccountPending.xml")
+            Dim overview1 As AccountPending
+            overview1 = CType(reader1.Deserialize(file1), AccountPending)
+            file1.Close()
+
+
+            Dim reader2 As New System.Xml.Serialization.XmlSerializer(GetType(AccountHistory))
+            Dim file2 As New System.IO.StreamReader(
+           "AccountHistory.xml")
+            Dim overview2 As AccountHistory
+            overview2 = CType(reader2.Deserialize(file2), AccountHistory)
+            file2.Close()
+
+            Dim reader3 As New System.Xml.Serialization.XmlSerializer(GetType(AccountSettings))
+            Dim file3 As New System.IO.StreamReader(
+           "AccountSettings.xml")
+            Dim overview3 As AccountSettings
+            overview3 = CType(reader3.Deserialize(file3), AccountSettings)
+            file3.Close()
+
+            account_Pending = overview1
+            account_History = overview2
+            account_Settings = overview3
+
+        Catch ex As Exception
+
+            MsgBox("Load Failed")
+            MsgBox(ex.ToString)
+        End Try
+        updateALL()
+    End Sub
+
+    Public Sub Save_Data()
+        Try
+            Dim xml_ser1 As New XmlSerializer(GetType(AccountPending))
+            Dim string_writer1 As New StringWriter
+            Dim file1 As New System.IO.StreamWriter(
+               "AccountPending.xml")
+            xml_ser1.Serialize(file1, account_Pending)
+            file1.Close()
+
+            Dim xml_ser2 As New XmlSerializer(GetType(AccountHistory))
+            Dim string_writer2 As New StringWriter
+            Dim file2 As New System.IO.StreamWriter(
+               "AccountHistory.xml")
+            xml_ser2.Serialize(file2, account_History)
+            file2.Close()
+
+            Dim xml_ser3 As New XmlSerializer(GetType(AccountSettings))
+            Dim string_writer3 As New StringWriter
+            Dim file3 As New System.IO.StreamWriter(
+               "AccountSettings.xml")
+            xml_ser3.Serialize(file3, account_Settings)
+            file3.Close()
+            MsgBox("Save Complete")
+        Catch ex As Exception
+            MsgBox("Save Failed")
+            MsgBox(ex.ToString)
+        End Try
+
     End Sub
 End Class

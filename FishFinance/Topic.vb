@@ -1,6 +1,12 @@
-﻿Public Class Topic
+﻿Imports System.Xml.Serialization
+
+<Serializable()>
+Public Class Topic
     Public name As String
     Public topicID As String
+    Public Sub New()
+
+    End Sub
     Public Sub New(ByVal name As String)
         Me.name = name
         Me.topicID = convert_name_ID(name)

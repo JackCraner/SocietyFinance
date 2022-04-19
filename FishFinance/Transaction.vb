@@ -1,10 +1,17 @@
-﻿Public Class Transaction
+﻿
+Imports System.Xml.Serialization
+
+<Serializable()>
+Public Class Transaction
 
     Public name As String
-    Private amount As Double
+    Public amount As Double
     Public dateMade As Date
     Public reference As String
-    Private label As TransactionHandle
+    Public label As TransactionHandle
+    Public Sub New()
+
+    End Sub
     Public Sub New(ByVal amount As Double, ByVal label As TransactionHandle, Optional ByVal name As String = "FISH", Optional ByVal reference As String = "", Optional ByVal dateMade As Date = Nothing)
         Me.amount = amount
         Me.label = label

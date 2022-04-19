@@ -1,5 +1,6 @@
-﻿Public Class FinanceDataBase
-    Dim list_expense As New List(Of Expense)
+﻿<Serializable()>
+Public Class FinanceDataBase
+    Public list_expense As New List(Of Expense)
     Public Sub New()
 
     End Sub

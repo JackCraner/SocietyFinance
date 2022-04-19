@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AccountHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <list_expense>
+    <Expense>
+      <name>NATHAN LEADBETTER </name>
+      <projected_cost>50</projected_cost>
+      <projected_payback>0</projected_payback>
+      <deadline>2022-04-07T00:00:00</deadline>
+      <list_of_payments>
+        <Transaction>
+          <name>ARUODZIUTE I </name>
+          <amount>30</amount>
+          <dateMade>2022-04-12T00:00:00</dateMade>
+          <reference> INDRE - DISC </reference>
+          <label>Income</label>
+        </Transaction>
+        <Transaction>
+          <name>JOHN HARPUR </name>
+          <amount>20</amount>
+          <dateMade>2022-04-08T00:00:00</dateMade>
+          <reference> FISHBOWL DISKS X2 </reference>
+          <label>Income</label>
+        </Transaction>
+      </list_of_payments>
+      <IDCode>URL</IDCode>
+      <paidFlag>
+        <name>NATHAN LEADBETTER </name>
+        <amount>50</amount>
+        <dateMade>2022-04-07T00:00:00</dateMade>
+        <reference> NATHANJUMPERHOODY </reference>
+        <label>Outgoing</label>
+      </paidFlag>
+    </Expense>
+  </list_expense>
+</AccountHistory>

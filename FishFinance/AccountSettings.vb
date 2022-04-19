@@ -1,6 +1,7 @@
-﻿Public Class AccountSettings
-    Dim last_updated_date As Date
-    Dim membership_cost As Double = 10
+﻿<Serializable()>
+Public Class AccountSettings
+    Public last_updated_date As Date
+    Public membership_cost As Double = 10
     Public Sub New()
 
 
