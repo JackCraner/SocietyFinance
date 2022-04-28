@@ -2,13 +2,136 @@
 <AccountPending xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <list_expense>
     <Expense>
-      <name>Test</name>
-      <projected_cost>22</projected_cost>
-      <projected_payback>40</projected_payback>
-      <deadline>2022-04-19T00:00:00+01:00</deadline>
+      <name>TO A/C 84174838</name>
+      <projected_cost>50</projected_cost>
+      <projected_payback>0</projected_payback>
+      <deadline>2022-03-28T00:00:00</deadline>
+      <list_of_payments>
+        <Transaction>
+          <name>THOMAS JACKSON</name>
+          <amount>10</amount>
+          <dateMade>2022-03-18T00:00:00</dateMade>
+          <reference> FRISBEE </reference>
+          <label>Income</label>
+          <expLink>RFV</expLink>
+          <transID>EJQA</transID>
+        </Transaction>
+        <Transaction>
+          <name>SENIOR CHARLES</name>
+          <amount>10</amount>
+          <dateMade>2022-04-06T00:00:00</dateMade>
+          <reference> CHARLIE SENIOR </reference>
+          <label>Donation</label>
+          <expLink>RFV</expLink>
+          <transID>KRYW</transID>
+        </Transaction>
+        <Transaction>
+          <name>EDWARD BAKER</name>
+          <amount>32.5</amount>
+          <dateMade>2022-04-06T00:00:00</dateMade>
+          <reference> ED BAKER 01 </reference>
+          <label>Loan</label>
+          <expLink>RFV</expLink>
+          <transID>YRQJ</transID>
+        </Transaction>
+        <Transaction>
+          <name>PRESTON CHARLOTTE</name>
+          <amount>32.5</amount>
+          <dateMade>2022-04-07T00:00:00</dateMade>
+          <reference> CHARLY PRESTON </reference>
+          <label>Income</label>
+          <expLink>RFV</expLink>
+          <transID>IRFL</transID>
+        </Transaction>
+        <Transaction>
+          <name>JOHN HARPUR</name>
+          <amount>20</amount>
+          <dateMade>2022-04-08T00:00:00</dateMade>
+          <reference> FISHBOWL DISKS X2 </reference>
+          <label>Membership</label>
+          <expLink>RFV</expLink>
+          <transID>OJHL</transID>
+        </Transaction>
+        <Transaction>
+          <name>ARUODZIUTE I</name>
+          <amount>10</amount>
+          <dateMade>2022-04-22T00:00:00</dateMade>
+          <reference> INDRE - DISC </reference>
+          <label>Loan</label>
+          <expLink>RFV</expLink>
+          <transID>YULE</transID>
+        </Transaction>
+      </list_of_payments>
+      <IDCode>RFV</IDCode>
+      <paidFlag>
+        <name>TO A/C 84174838</name>
+        <amount>50</amount>
+        <dateMade>2022-03-28T00:00:00</dateMade>
+        <reference> VIA MOBILE - XFER"</reference>
+        <label>Outgoing</label>
+        <transID>RFVO</transID>
+      </paidFlag>
+    </Expense>
+    <Expense>
+      <name>SMOG</name>
+      <projected_cost>80</projected_cost>
+      <projected_payback>0</projected_payback>
+      <deadline>2022-03-28T00:00:00</deadline>
+      <list_of_payments>
+        <Transaction>
+          <name>JOHN HARPUR</name>
+          <amount>65</amount>
+          <dateMade>2022-04-06T00:00:00</dateMade>
+          <reference> CHARPUR </reference>
+          <label>Donation</label>
+          <expLink>PWU</expLink>
+          <transID>XLOL</transID>
+        </Transaction>
+        <Transaction>
+          <name>HELENA BAJURSKA</name>
+          <amount>20</amount>
+          <dateMade>2022-04-07T00:00:00</dateMade>
+          <reference> HELENADISCS </reference>
+          <label>Income</label>
+          <expLink>PWU</expLink>
+          <transID>YVCI</transID>
+        </Transaction>
+        <Transaction>
+          <name>NATHAN LEADBETTER</name>
+          <amount>32.5</amount>
+          <dateMade>2022-04-07T00:00:00</dateMade>
+          <reference> NATHANJUMPERHOODY </reference>
+          <label>Membership</label>
+          <expLink>PWU</expLink>
+          <transID>FMGO</transID>
+        </Transaction>
+      </list_of_payments>
+      <IDCode>PWU</IDCode>
+      <paidFlag>
+        <name>SMOG</name>
+        <amount>80</amount>
+        <dateMade>2022-03-28T00:00:00</dateMade>
+        <reference> LANCASTER FISH </reference>
+        <label>Outgoing</label>
+        <transID>PWUS</transID>
+      </paidFlag>
+    </Expense>
+    <Expense>
+      <name>TO A/C 84174838</name>
+      <projected_cost>50</projected_cost>
+      <projected_payback>0</projected_payback>
+      <deadline>2022-03-28T00:00:00</deadline>
       <list_of_payments />
-      <IDCode>YBB</IDCode>
+      <IDCode>EHG</IDCode>
+      <paidFlag>
+        <name>TO A/C 84174838</name>
+        <amount>50</amount>
+        <dateMade>2022-03-28T00:00:00</dateMade>
+        <reference> VIA MOBILE - XFER"</reference>
+        <label>Outgoing</label>
+        <transID>EHGW</transID>
+      </paidFlag>
     </Expense>
   </list_expense>
-  <current_Balance>0</current_Balance>
+  <current_Balance>517.01</current_Balance>
 </AccountPending>

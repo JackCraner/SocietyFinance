@@ -12,7 +12,7 @@ Public Class Define_Expenditure
 
         If (Not ComboBox1.Text = "") Then
 
-            new_exp.expense_topic = Base_Form.account_Pending.Set_Topic(ComboBox1.Text)
+            new_exp.topic = Base_Form.account_Pending.Set_Topic(ComboBox1.Text)
         End If
 
         If Not (IsNothing(startPoint)) Then

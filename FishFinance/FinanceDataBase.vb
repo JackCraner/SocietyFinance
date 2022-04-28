@@ -27,11 +27,22 @@ Public Class FinanceDataBase
         Return list_expense.Find(Function(x As Expense) x.IDCode = id)
     End Function
 
+    Public Function Get_Expenses_Date_Order() As List(Of Expense)
+        Return list_expense.OrderBy(Function(x) Date_Order(x)).ToList()
+    End Function
+    Public Function Date_Order(ByRef exp As Expense)
+        If (exp.isPaid) Then
+            Return exp.paidFlag.dateMade
+        Else
+            Return exp.deadline
+        End If
+    End Function
+
     Public Function get_Topics()
         Dim list_topics As New List(Of Topic)
         For Each exp As Expense In list_expense
-            If exp.hasTopic() And Not list_topics.Contains(exp.expense_topic) Then
-                list_topics.Add(exp.expense_topic)
+            If exp.hasTopic() And Not list_topics.Contains(exp.topic) Then
+                list_topics.Add(exp.topic)
             End If
         Next
         Return list_topics

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Base_Form
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Base_Form
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Base_Form))
         Me.Balance = New System.Windows.Forms.Label()
@@ -29,18 +29,22 @@ Partial Class Base_Form
         Me.A_Balance_L = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripDropDownButton4 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ToolStripDropDownButton3 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ToolStripDropDownButton6 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ToolStripDropDownButton5 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton9 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripDropDownButton3 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripDropDownButton5 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton7 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.InitalBalanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MembershipFeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearSaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.PName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PDeadline = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.RName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,12 +56,6 @@ Partial Class Base_Form
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.PName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PRecoup = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PDeadline = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PUID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,7 +104,7 @@ Partial Class Base_Form
         'ToolStrip1
         '
         Me.ToolStrip1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton9, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton6, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton7, Me.ToolStripDropDownButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton4, Me.ToolStripDropDownButton9, Me.ToolStripDropDownButton3, Me.ToolStripDropDownButton5, Me.ToolStripDropDownButton7, Me.ToolStripDropDownButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(885, 27)
@@ -123,6 +121,16 @@ Partial Class Base_Form
         Me.ToolStripDropDownButton4.Size = New System.Drawing.Size(124, 24)
         Me.ToolStripDropDownButton4.Text = "Add Expenditure"
         '
+        'ToolStripDropDownButton9
+        '
+        Me.ToolStripDropDownButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButton9.Image = CType(resources.GetObject("ToolStripDropDownButton9.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton9.Name = "ToolStripDropDownButton9"
+        Me.ToolStripDropDownButton9.ShowDropDownArrow = False
+        Me.ToolStripDropDownButton9.Size = New System.Drawing.Size(118, 24)
+        Me.ToolStripDropDownButton9.Text = "Account History"
+        '
         'ToolStripDropDownButton3
         '
         Me.ToolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
@@ -132,16 +140,6 @@ Partial Class Base_Form
         Me.ToolStripDropDownButton3.ShowDropDownArrow = False
         Me.ToolStripDropDownButton3.Size = New System.Drawing.Size(49, 24)
         Me.ToolStripDropDownButton3.Text = "Reset"
-        '
-        'ToolStripDropDownButton6
-        '
-        Me.ToolStripDropDownButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton6.Image = CType(resources.GetObject("ToolStripDropDownButton6.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton6.Name = "ToolStripDropDownButton6"
-        Me.ToolStripDropDownButton6.ShowDropDownArrow = False
-        Me.ToolStripDropDownButton6.Size = New System.Drawing.Size(75, 24)
-        Me.ToolStripDropDownButton6.Text = "Members"
         '
         'ToolStripDropDownButton5
         '
@@ -153,16 +151,6 @@ Partial Class Base_Form
         Me.ToolStripDropDownButton5.Size = New System.Drawing.Size(77, 24)
         Me.ToolStripDropDownButton5.Text = "Add Data"
         Me.ToolStripDropDownButton5.ToolTipText = "Add Data"
-        '
-        'ToolStripDropDownButton9
-        '
-        Me.ToolStripDropDownButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton9.Image = CType(resources.GetObject("ToolStripDropDownButton9.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton9.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton9.Name = "ToolStripDropDownButton9"
-        Me.ToolStripDropDownButton9.ShowDropDownArrow = False
-        Me.ToolStripDropDownButton9.Size = New System.Drawing.Size(118, 24)
-        Me.ToolStripDropDownButton9.Text = "Account History"
         '
         'ToolStripDropDownButton7
         '
@@ -177,7 +165,7 @@ Partial Class Base_Form
         'ToolStripDropDownButton1
         '
         Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitalBalanceToolStripMenuItem, Me.MembershipFeeToolStripMenuItem, Me.ClearSaveToolStripMenuItem})
+        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitalBalanceToolStripMenuItem, Me.ClearSaveToolStripMenuItem})
         Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
         Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
@@ -187,20 +175,14 @@ Partial Class Base_Form
         'InitalBalanceToolStripMenuItem
         '
         Me.InitalBalanceToolStripMenuItem.Name = "InitalBalanceToolStripMenuItem"
-        Me.InitalBalanceToolStripMenuItem.Size = New System.Drawing.Size(188, 24)
+        Me.InitalBalanceToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.InitalBalanceToolStripMenuItem.Text = "Inital Balance"
-        '
-        'MembershipFeeToolStripMenuItem
-        '
-        Me.MembershipFeeToolStripMenuItem.Name = "MembershipFeeToolStripMenuItem"
-        Me.MembershipFeeToolStripMenuItem.Size = New System.Drawing.Size(188, 24)
-        Me.MembershipFeeToolStripMenuItem.Text = "Membership Fee"
         '
         'ClearSaveToolStripMenuItem
         '
         Me.ClearSaveToolStripMenuItem.Name = "ClearSaveToolStripMenuItem"
-        Me.ClearSaveToolStripMenuItem.Size = New System.Drawing.Size(188, 24)
-        Me.ClearSaveToolStripMenuItem.Text = "Clear Save"
+        Me.ClearSaveToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.ClearSaveToolStripMenuItem.Text = "Manual Mode"
         '
         'Label1
         '
@@ -236,6 +218,42 @@ Partial Class Base_Form
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(582, 150)
         Me.DataGridView1.TabIndex = 13
+        '
+        'PName
+        '
+        Me.PName.HeaderText = "Name"
+        Me.PName.Name = "PName"
+        Me.PName.ReadOnly = True
+        '
+        'PRecoup
+        '
+        Me.PRecoup.HeaderText = "Recoupment"
+        Me.PRecoup.Name = "PRecoup"
+        Me.PRecoup.ReadOnly = True
+        '
+        'PPrice
+        '
+        Me.PPrice.HeaderText = "Price"
+        Me.PPrice.Name = "PPrice"
+        Me.PPrice.ReadOnly = True
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Predicted Payback"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'PDeadline
+        '
+        Me.PDeadline.HeaderText = "Deadline"
+        Me.PDeadline.Name = "PDeadline"
+        Me.PDeadline.ReadOnly = True
+        '
+        'PUID
+        '
+        Me.PUID.HeaderText = "Expense ID"
+        Me.PUID.Name = "PUID"
+        Me.PUID.ReadOnly = True
         '
         'DataGridView2
         '
@@ -323,42 +341,6 @@ Partial Class Base_Form
         Me.Label7.TabIndex = 18
         Me.Label7.Text = "Predicted"
         '
-        'PName
-        '
-        Me.PName.HeaderText = "Name"
-        Me.PName.Name = "PName"
-        Me.PName.ReadOnly = True
-        '
-        'PRecoup
-        '
-        Me.PRecoup.HeaderText = "Recoupment"
-        Me.PRecoup.Name = "PRecoup"
-        Me.PRecoup.ReadOnly = True
-        '
-        'PPrice
-        '
-        Me.PPrice.HeaderText = "Price"
-        Me.PPrice.Name = "PPrice"
-        Me.PPrice.ReadOnly = True
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Predicted Payback"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'PDeadline
-        '
-        Me.PDeadline.HeaderText = "Deadline"
-        Me.PDeadline.Name = "PDeadline"
-        Me.PDeadline.ReadOnly = True
-        '
-        'PUID
-        '
-        Me.PUID.HeaderText = "Expense ID"
-        Me.PUID.Name = "PUID"
-        Me.PUID.ReadOnly = True
-        '
         'Base_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -394,7 +376,6 @@ Partial Class Base_Form
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripDropDownButton1 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents InitalBalanceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents MembershipFeeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripDropDownButton4 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ToolStripDropDownButton3 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents ClearSaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -403,7 +384,6 @@ Partial Class Base_Form
     Friend WithEvents ToolStripDropDownButton5 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
-    Friend WithEvents ToolStripDropDownButton6 As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents RName As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RRecoup As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RPaid As System.Windows.Forms.DataGridViewTextBoxColumn

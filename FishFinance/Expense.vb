@@ -10,7 +10,7 @@ Public Class Expense
     Public list_of_payments As New List(Of Transaction)
     Public IDCode As String
     Public paidFlag As Transaction
-    Public expense_topic As Topic
+    Public topic As Topic
     Public Sub New()
 
     End Sub
@@ -23,7 +23,7 @@ Public Class Expense
 
     Public Sub Add_Income(ByRef payment As Transaction)
         If (payment.getLabel > 0) Then
-
+            payment.expLink = IDCode
             list_of_payments.Add(payment)
             Base_Form.account_Pending.Handle_Transaction(payment)
         Else
@@ -40,6 +40,18 @@ Public Class Expense
             MsgBox("Payment Not Found")
         End If
 
+    End Sub
+    Public Sub Move_Payment(ByRef payment As Transaction, ByRef exp As Expense)
+        If (list_of_payments.Contains(payment)) Then
+            list_of_payments.Remove(payment)
+
+            exp.list_of_payments.Add(payment)
+            payment.expLink = exp.IDCode
+            MsgBox("Move Complete")
+            Base_Form.updateALL()
+        Else
+            MsgBox("Payment Not Found For Move")
+        End If
     End Sub
     Public Sub Add_Paid(ByRef payment As Transaction)
         If (payment.getLabel = TransactionHandle.Outgoing) Then
@@ -67,7 +79,7 @@ Public Class Expense
         Return Not paidFlag Is Nothing
     End Function
     Public Function hasTopic()
-        Return Not expense_topic Is Nothing
+        Return Not topic Is Nothing
     End Function
     Public Function getProjectedPayback()
         Return projected_payback
@@ -76,6 +88,11 @@ Public Class Expense
         projected_payback = amount
         Base_Form.updateALL()
     End Sub
+    Public Function get_transactions() As List(Of Transaction)
+        Dim list_return = (list_of_payments.OrderBy(Function(x) x.dateMade).ToList())
+        list_return.Reverse()
+        Return list_return
+    End Function
 
     ''ability to partial pay but only for pending payments
 End Class

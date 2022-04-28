@@ -9,6 +9,10 @@ Public Class Transaction
     Public dateMade As Date
     Public reference As String
     Public label As TransactionHandle
+
+    Public expLink As String
+    Public transID As String
+    Public topic As Topic
     Public Sub New()
 
     End Sub

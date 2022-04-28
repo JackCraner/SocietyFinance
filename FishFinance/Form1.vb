@@ -46,7 +46,7 @@ Public Class Base_Form
 
 
 
-    Private Sub MembershipFeeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MembershipFeeToolStripMenuItem.Click
+    Private Sub MembershipFeeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             account_Settings.Set_MembershipCost(InputBox("Enter Membership Price", "Enter Price"))
         Catch ex As Exception
@@ -90,7 +90,7 @@ Public Class Base_Form
         If OpenFileDialog1.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             Dim checkFile As New IO.FileInfo(OpenFileDialog1.FileName)
             If (checkFile.Extension = ".csv" Or checkFile.Extension = ".xlsx" Or checkFile.Extension = ".xls") Then
-                Add_Data(OpenFileDialog1.FileName)
+                Add_Data2(OpenFileDialog1.FileName)
                 account_Settings.set_LUD(Date.Today) 'should update to date of most recent transaction
             Else
                 MsgBox("Incorret File Type")
@@ -127,6 +127,7 @@ Public Class Base_Form
         Dim counter As Integer = 4
         Dim rowAccounted As Boolean = False
         'filters out dates which have already been updated
+        Dim finalBalance As Double = 0
         While (Not (xlWorkSheet.Cells(counter, 1).Value = Nothing)) And (DateTime.Compare(xlWorkSheet.Cells(counter, 1).Value, account_Settings.get_LUD) >= 0)
             Dim transactionID As String = xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(1)
             Dim newTransaction As New ExcelItem(xlWorkSheet.Cells(counter, 4).Value, xlWorkSheet.Cells(counter, 3).Value.Split(New Char() {","c})(0), transactionID, xlWorkSheet.Cells(counter, 1).Value)
@@ -159,6 +160,64 @@ Public Class Base_Form
             Manage_Transaction_Form.startForm(Transaction, account_Pending, account_History)
             Manage_Transaction_Form.ShowDialog()
         Next
+    End Sub
+    Public Sub Add_Data2(ByVal filename As String)
+        Dim lines As List(Of String) = File.ReadAllLines(filename).ToList
+        Dim list_unaccounted_in As New List(Of Transaction)
+        Dim list_unaccounted_out As New List(Of Transaction)
+        Dim rowAccounted As Boolean = False
+
+        lines.RemoveAt(0)
+        lines.RemoveAt(0)
+        lines.Reverse()
+        Dim finalBalance As Double = 0
+        For Each l As String In lines
+            Dim data As String() = l.Split(",")
+            Dim descrip As New List(Of String)
+            For i As Integer = 2 To data.Count - 5
+                descrip.Add(data(i))
+            Next
+            Dim name As String = descrip(0).Replace("""", "").Trim()
+            Dim ref As String = descrip(1)
+            finalBalance = data(3 + descrip.Count)
+            Dim newTransaction As New ExcelItem(data(2 + descrip.Count), name, ref, data(0))
+            If (DateTime.Compare(newTransaction.dateMade, account_Settings.get_LUD) >= 0) Then
+                If newTransaction.amount >= 0 Then
+                    For Each expense As Expense In account_Pending.Get_Expenses()
+                        If ref.Contains(expense.IDCode) Then  'THis is a worry, make more strict
+                            expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
+                            rowAccounted = True
+                        End If
+
+                    Next
+                End If
+
+                If rowAccounted = False Then
+                    If newTransaction.amount > 0 Then
+                        list_unaccounted_in.Add((New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
+                    Else
+                        list_unaccounted_out.Add((New Transaction(Math.Abs(newTransaction.amount), TransactionHandle.Outgoing, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
+
+                    End If
+
+                End If
+                rowAccounted = False
+            End If
+
+
+        Next
+        For Each Transaction As Transaction In list_unaccounted_out.Concat(list_unaccounted_in)
+            Manage_Transaction_Form.startForm(Transaction, account_Pending, account_History)
+            Manage_Transaction_Form.ShowDialog()
+        Next
+        If Not account_Pending.Get_Current_Balance = finalBalance Then
+            Dim answer = MsgBox("Update Current balance? Current Balance: " + account_Pending.current_Balance.ToString + vbNewLine + " Data Balance: " + finalBalance.ToString, vbQuestion + vbYesNo + vbDefaultButton2, "Account Balance Mismatch")
+            If (answer = MsgBoxResult.Yes) Then
+                account_Pending.current_Balance = finalBalance
+            End If
+        End If
+        updateALL()
+
     End Sub
 
     Public Sub Read_Data()
@@ -224,6 +283,37 @@ Public Class Base_Form
             MsgBox("Save Failed")
             MsgBox(ex.ToString)
         End Try
+
+    End Sub
+
+    Public Function getTransactionGlobal(ByVal id As String) As Transaction
+        Dim both As New List(Of Expense)(account_History.Get_Expenses.Concat(account_Pending.Get_Expenses))
+        For Each exp As Expense In both
+            If (exp.get_transactions.Exists(Function(x As Transaction) x.transID = id)) Then
+                Return exp.get_transactions.Find(Function(x As Transaction) x.transID = id)
+            End If
+            If (exp.isPaid And exp.paidFlag.transID = id) Then
+                Return exp.paidFlag
+            End If
+        Next
+        Return Nothing
+    End Function
+    Public Function getExpenseGlobal(ByVal id As String) As Expense
+        Dim both As New List(Of Expense)(account_History.Get_Expenses.Concat(account_Pending.Get_Expenses))
+        Return both.Find(Function(x As Expense) x.IDCode = id)
+    End Function
+
+    Private Sub ClearSaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearSaveToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub ToolStripDropDownButton2_Click(sender As Object, e As EventArgs)
+        If OpenFileDialog1.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+            Dim checkFile As New IO.FileInfo(OpenFileDialog1.FileName)
+            If (checkFile.Extension = ".xml") Then
+
+            End If
+        End If
 
     End Sub
 End Class

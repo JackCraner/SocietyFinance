@@ -25,6 +25,7 @@ Partial Class Manage_Pending_Form
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -33,18 +34,18 @@ Partial Class Manage_Pending_Form
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.PayeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DatePaid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.PayeeName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Amount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DatePaid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -81,6 +82,15 @@ Partial Class Manage_Pending_Form
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Confirm"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(18, 39)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(65, 20)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Amount"
         '
         'TextBox1
         '
@@ -154,28 +164,13 @@ Partial Class Manage_Pending_Form
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PayeeName, Me.Amount, Me.DatePaid})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PayeeName, Me.Amount, Me.DatePaid, Me.Column1})
         Me.DataGridView1.Location = New System.Drawing.Point(176, 111)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(411, 150)
         Me.DataGridView1.TabIndex = 9
-        '
-        'PayeeName
-        '
-        Me.PayeeName.HeaderText = "Name"
-        Me.PayeeName.Name = "PayeeName"
-        '
-        'Amount
-        '
-        Me.Amount.HeaderText = "Amount"
-        Me.Amount.Name = "Amount"
-        '
-        'DatePaid
-        '
-        Me.DatePaid.HeaderText = "Date"
-        Me.DatePaid.Name = "DatePaid"
         '
         'TextBox3
         '
@@ -211,15 +206,6 @@ Partial Class Manage_Pending_Form
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 12
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(18, 39)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Amount"
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label12)
@@ -232,14 +218,14 @@ Partial Class Manage_Pending_Form
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Paid Flag"
         '
-        'Label3
+        'Label12
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 34)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Label3"
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(21, 90)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(45, 13)
+        Me.Label12.TabIndex = 2
+        Me.Label12.Text = "Label12"
         '
         'Label11
         '
@@ -250,14 +236,35 @@ Partial Class Manage_Pending_Form
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "Label11"
         '
-        'Label12
+        'Label3
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(21, 90)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(45, 13)
-        Me.Label12.TabIndex = 2
-        Me.Label12.Text = "Label12"
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(21, 34)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "Label3"
+        '
+        'PayeeName
+        '
+        Me.PayeeName.HeaderText = "Name"
+        Me.PayeeName.Name = "PayeeName"
+        '
+        'Amount
+        '
+        Me.Amount.HeaderText = "Amount"
+        Me.Amount.Name = "Amount"
+        '
+        'DatePaid
+        '
+        Me.DatePaid.HeaderText = "Date"
+        Me.DatePaid.Name = "DatePaid"
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Type"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
         '
         'Manage_Pending_Form
         '
@@ -300,9 +307,6 @@ Partial Class Manage_Pending_Form
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents PayeeName As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Amount As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DatePaid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label10 As Label
@@ -312,4 +316,8 @@ Partial Class Manage_Pending_Form
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents PayeeName As DataGridViewTextBoxColumn
+    Friend WithEvents Amount As DataGridViewTextBoxColumn
+    Friend WithEvents DatePaid As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
 End Class

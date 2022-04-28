@@ -14,15 +14,15 @@
         Label7.Text = exp.Get_Recoup()
         TextBox1.Text = exp.getProjectedPayback
         If (exp.hasTopic()) Then
-            TextBox4.Text = exp.expense_topic.name
+            TextBox4.Text = exp.topic.name
         Else
 
             TextBox4.Text = "1"
         End If
 
         DataGridView1.Rows.Clear()
-        For Each payment As Transaction In exp.list_of_payments
-            DataGridView1.Rows.Add(New String() {payment.name, payment.getABSAmount, payment.dateMade})
+        For Each payment As Transaction In exp.get_transactions
+            DataGridView1.Rows.Add(New String() {payment.name, payment.getABSAmount, payment.dateMade, payment.getLabel.ToString})
         Next
 
         If (exp.isPaid Or exp.list_of_payments.Count > 0) Then
@@ -42,9 +42,28 @@
             Label12.Text = exp.getPaidFlag.dateMade
         End If
         Base_Form.updateALL()
+        ColourCode()
+    End Sub
+    Public Sub ColourCode()
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If row.Cells(3).Value = "Income" Then
+                row.DefaultCellStyle.BackColor = Color.Green
+            ElseIf (row.Cells(3).Value = "Donation") Then
+                row.DefaultCellStyle.BackColor = Color.DarkGreen
+            ElseIf (row.Cells(3).Value = "Loan") Then
+                row.DefaultCellStyle.BackColor = Color.Yellow
+            ElseIf (row.Cells(3).Value = "Membership") Then
+                row.DefaultCellStyle.BackColor = Color.LightBlue
+            ElseIf (row.Cells(3).Value = "Outgoing") Then
+                row.DefaultCellStyle.BackColor = Color.Red
+            ElseIf (row.Cells(3).Value = "Refund") Then
+                row.DefaultCellStyle.BackColor = Color.Purple
+            Else
+                row.DefaultCellStyle.BackColor = Color.Red
+            End If
+        Next
 
     End Sub
-
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         exp.SetPayBack(Double.Parse(TextBox1.Text))
@@ -57,7 +76,16 @@
                 Base_Form.account_Pending.Remove_Expense(exp)
                 Base_Form.account_History.Add_Expense(exp)
             Else
-                Base_Form.account_Pending.Remove_Expense(exp)
+                If (exp.list_of_payments.Count > 0) Then
+                    Dim answer = MsgBox("Are you sure? Not yet paid", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+                    If (answer = MsgBoxResult.Yes) Then
+                        Base_Form.account_Pending.Remove_Expense(exp)
+                        Base_Form.account_History.Add_Expense(exp)
+                    End If
+                Else
+                    Base_Form.account_Pending.Remove_Expense(exp)
+                End If
+
             End If
         Else
             Base_Form.account_Pending.Return_Expense(exp)
@@ -70,7 +98,7 @@
 
     Private Sub DataGridView1_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
         Manage_Payment_Form.Visible = True
-        Manage_Payment_Form.StartForm(exp.list_of_payments(DataGridView1.CurrentRow.Index), exp)
+        Manage_Payment_Form.StartForm(exp.get_transactions(DataGridView1.CurrentRow.Index))
     End Sub
 
     Private Sub TextBox3_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox3.KeyPress
