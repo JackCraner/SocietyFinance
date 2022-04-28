@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AccountHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <list_expense>
-    <Expense>
-      <name>SMOG</name>
-      <projected_cost>80</projected_cost>
-      <projected_payback>0</projected_payback>
-      <deadline>2022-03-28T00:00:00</deadline>
-      <list_of_payments />
-      <IDCode>HFS</IDCode>
-      <paidFlag>
-        <name>SMOG</name>
-        <amount>80</amount>
-        <dateMade>2022-03-28T00:00:00</dateMade>
-        <reference> LANCASTER FISH </reference>
-        <label>Outgoing</label>
-        <transID>HFSC</transID>
-      </paidFlag>
-    </Expense>
-  </list_expense>
+  <list_expense />
 </AccountHistory>

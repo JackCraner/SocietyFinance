@@ -167,45 +167,47 @@ Public Class Base_Form
         Dim list_unaccounted_out As New List(Of Transaction)
         Dim rowAccounted As Boolean = False
 
-        lines.RemoveAt(0)
-        lines.RemoveAt(0)
+
         lines.Reverse()
         Dim finalBalance As Double = 0
         For Each l As String In lines
             Dim data As String() = l.Split(",")
-            Dim descrip As New List(Of String)
-            For i As Integer = 2 To data.Count - 5
-                descrip.Add(data(i))
-            Next
-            Dim name As String = descrip(0).Replace("""", "").Trim()
-            Dim ref As String = descrip(1)
-            finalBalance = data(3 + descrip.Count)
-            Dim newTransaction As New ExcelItem(data(2 + descrip.Count), name, ref, data(0))
-            If (DateTime.Compare(newTransaction.dateMade, account_Settings.get_LUD) >= 0) Then
-                If newTransaction.amount >= 0 Then
-                    For Each expense As Expense In account_Pending.Get_Expenses()
-                        If ref.Contains(expense.IDCode) Then  'THis is a worry, make more strict
-                            expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
-                            rowAccounted = True
-                        End If
+            If Not (data(0) = "Date" Or data(0) = "") Then
+                Dim descrip As New List(Of String)
+                For i As Integer = 2 To data.Count - 5
+                    descrip.Add(data(i))
+                Next
+                Dim name As String = descrip(0).Replace("""", "").Trim()
+                Dim ref As String = descrip(1)
+                finalBalance = data(3 + descrip.Count)
+                Dim newTransaction As New ExcelItem(data(2 + descrip.Count), name, ref, data(0))
+                If (DateTime.Compare(newTransaction.dateMade, account_Settings.get_LUD) >= 0) Then
+                    If newTransaction.amount >= 0 Then
+                        For Each expense As Expense In account_Pending.Get_Expenses()
+                            If ref.Contains(expense.IDCode) Then  'THis is a worry, make more strict
+                                expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
+                                rowAccounted = True
+                            End If
 
-                    Next
-                End If
-
-                If rowAccounted = False Then
-                    If newTransaction.amount > 0 Then
-                        list_unaccounted_in.Add((New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
-                    Else
-                        list_unaccounted_out.Add((New Transaction(Math.Abs(newTransaction.amount), TransactionHandle.Outgoing, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
-
+                        Next
                     End If
 
+                    If rowAccounted = False Then
+                        If newTransaction.amount > 0 Then
+                            list_unaccounted_in.Add((New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
+                        Else
+                            list_unaccounted_out.Add((New Transaction(Math.Abs(newTransaction.amount), TransactionHandle.Outgoing, newTransaction.name, newTransaction.reference, newTransaction.dateMade)))
+
+                        End If
+
+                    End If
+                    rowAccounted = False
                 End If
-                rowAccounted = False
+
             End If
-
-
         Next
+
+
         For Each Transaction As Transaction In list_unaccounted_out.Concat(list_unaccounted_in)
             Manage_Transaction_Form.startForm(Transaction, account_Pending, account_History)
             Manage_Transaction_Form.ShowDialog()

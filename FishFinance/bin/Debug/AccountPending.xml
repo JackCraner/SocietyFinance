@@ -13,17 +13,8 @@
           <dateMade>2022-03-18T00:00:00</dateMade>
           <reference> FRISBEE </reference>
           <label>Income</label>
-          <expLink>RFV</expLink>
-          <transID>EJQA</transID>
-        </Transaction>
-        <Transaction>
-          <name>SENIOR CHARLES</name>
-          <amount>10</amount>
-          <dateMade>2022-04-06T00:00:00</dateMade>
-          <reference> CHARLIE SENIOR </reference>
-          <label>Donation</label>
-          <expLink>RFV</expLink>
-          <transID>KRYW</transID>
+          <expLink>MYE</expLink>
+          <transID>BSPE</transID>
         </Transaction>
         <Transaction>
           <name>EDWARD BAKER</name>
@@ -31,45 +22,63 @@
           <dateMade>2022-04-06T00:00:00</dateMade>
           <reference> ED BAKER 01 </reference>
           <label>Loan</label>
-          <expLink>RFV</expLink>
-          <transID>YRQJ</transID>
+          <expLink>MYE</expLink>
+          <transID>SPVD</transID>
+        </Transaction>
+        <Transaction>
+          <name>HELENA BAJURSKA</name>
+          <amount>20</amount>
+          <dateMade>2022-04-07T00:00:00</dateMade>
+          <reference> HELENADISCS </reference>
+          <label>Donation</label>
+          <expLink>MYE</expLink>
+          <transID>GZGV</transID>
         </Transaction>
         <Transaction>
           <name>PRESTON CHARLOTTE</name>
           <amount>32.5</amount>
           <dateMade>2022-04-07T00:00:00</dateMade>
           <reference> CHARLY PRESTON </reference>
-          <label>Income</label>
-          <expLink>RFV</expLink>
-          <transID>IRFL</transID>
+          <label>Loan</label>
+          <expLink>MYE</expLink>
+          <transID>FTEW</transID>
         </Transaction>
         <Transaction>
-          <name>JOHN HARPUR</name>
-          <amount>20</amount>
-          <dateMade>2022-04-08T00:00:00</dateMade>
-          <reference> FISHBOWL DISKS X2 </reference>
-          <label>Membership</label>
-          <expLink>RFV</expLink>
-          <transID>OJHL</transID>
+          <name>NATHAN LEADBETTER</name>
+          <amount>32.5</amount>
+          <dateMade>2022-04-07T00:00:00</dateMade>
+          <reference> NATHANJUMPERHOODY </reference>
+          <label>Income</label>
+          <expLink>MYE</expLink>
+          <transID>TTWK</transID>
         </Transaction>
         <Transaction>
           <name>ARUODZIUTE I</name>
           <amount>10</amount>
           <dateMade>2022-04-22T00:00:00</dateMade>
           <reference> INDRE - DISC </reference>
-          <label>Loan</label>
-          <expLink>RFV</expLink>
-          <transID>YULE</transID>
+          <label>Income</label>
+          <expLink>MYE</expLink>
+          <transID>URNX</transID>
+        </Transaction>
+        <Transaction>
+          <name>ARUODZIUTE I</name>
+          <amount>1000</amount>
+          <dateMade>2022-04-30T00:00:00</dateMade>
+          <reference> MYE</reference>
+          <label>Income</label>
+          <expLink>MYE</expLink>
+          <transID>JCDU</transID>
         </Transaction>
       </list_of_payments>
-      <IDCode>RFV</IDCode>
+      <IDCode>MYE</IDCode>
       <paidFlag>
         <name>TO A/C 84174838</name>
         <amount>50</amount>
         <dateMade>2022-03-28T00:00:00</dateMade>
         <reference> VIA MOBILE - XFER"</reference>
         <label>Outgoing</label>
-        <transID>RFVO</transID>
+        <transID>MYEW</transID>
       </paidFlag>
     </Expense>
     <Expense>
@@ -79,57 +88,41 @@
       <deadline>2022-03-28T00:00:00</deadline>
       <list_of_payments>
         <Transaction>
+          <name>SENIOR CHARLES</name>
+          <amount>10</amount>
+          <dateMade>2022-04-06T00:00:00</dateMade>
+          <reference> CHARLIE SENIOR </reference>
+          <label>Income</label>
+          <expLink>SGM</expLink>
+          <transID>MRRF</transID>
+        </Transaction>
+        <Transaction>
           <name>JOHN HARPUR</name>
           <amount>65</amount>
           <dateMade>2022-04-06T00:00:00</dateMade>
           <reference> CHARPUR </reference>
-          <label>Donation</label>
-          <expLink>PWU</expLink>
-          <transID>XLOL</transID>
-        </Transaction>
-        <Transaction>
-          <name>HELENA BAJURSKA</name>
-          <amount>20</amount>
-          <dateMade>2022-04-07T00:00:00</dateMade>
-          <reference> HELENADISCS </reference>
-          <label>Income</label>
-          <expLink>PWU</expLink>
-          <transID>YVCI</transID>
-        </Transaction>
-        <Transaction>
-          <name>NATHAN LEADBETTER</name>
-          <amount>32.5</amount>
-          <dateMade>2022-04-07T00:00:00</dateMade>
-          <reference> NATHANJUMPERHOODY </reference>
           <label>Membership</label>
-          <expLink>PWU</expLink>
-          <transID>FMGO</transID>
+          <expLink>SGM</expLink>
+          <transID>LIAJ</transID>
+        </Transaction>
+        <Transaction>
+          <name>JOHN HARPUR</name>
+          <amount>20</amount>
+          <dateMade>2022-04-08T00:00:00</dateMade>
+          <reference> FISHBOWL DISKS X2 </reference>
+          <label>Income</label>
+          <expLink>SGM</expLink>
+          <transID>HHRM</transID>
         </Transaction>
       </list_of_payments>
-      <IDCode>PWU</IDCode>
+      <IDCode>SGM</IDCode>
       <paidFlag>
         <name>SMOG</name>
         <amount>80</amount>
         <dateMade>2022-03-28T00:00:00</dateMade>
         <reference> LANCASTER FISH </reference>
         <label>Outgoing</label>
-        <transID>PWUS</transID>
-      </paidFlag>
-    </Expense>
-    <Expense>
-      <name>TO A/C 84174838</name>
-      <projected_cost>50</projected_cost>
-      <projected_payback>0</projected_payback>
-      <deadline>2022-03-28T00:00:00</deadline>
-      <list_of_payments />
-      <IDCode>EHG</IDCode>
-      <paidFlag>
-        <name>TO A/C 84174838</name>
-        <amount>50</amount>
-        <dateMade>2022-03-28T00:00:00</dateMade>
-        <reference> VIA MOBILE - XFER"</reference>
-        <label>Outgoing</label>
-        <transID>EHGW</transID>
+        <transID>SGMR</transID>
       </paidFlag>
     </Expense>
   </list_expense>
