@@ -34,6 +34,7 @@ Partial Class Form6
         Me.RadioButton5 = New System.Windows.Forms.RadioButton()
         Me.Balance = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,4 +205,5 @@ Partial Class Form6
     Friend WithEvents RadioButton5 As RadioButton
     Friend WithEvents Balance As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

@@ -78,7 +78,15 @@ Public Class Form6
         CType(xlWorkBook.Sheets(2), Excel.Worksheet).Name = "Account Pending"
         Base_Form.account_History.Export_Excel(xlApp, xlWorkBook.Sheets(1))
         Base_Form.account_Pending.Export_Excel(xlApp, xlWorkBook.Sheets(2))
-        xlWorkBook.SaveAs("D:\Personal Files\FrisbeeExec\Finance\csharp-Excel.xlsx")
+        SaveFileDialog1.Filter = "xlsx Files (*.xlsx*)|*.xlsx"
+        If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Try
+                xlWorkBook.SaveAs(SaveFileDialog1.FileName)
+            Catch ex As Exception
+                MsgBox("Cannot Access, Try closing the file")
+            End Try
+
+        End If
         xlWorkBook.Close(True, misValue, misValue)
         xlApp.Quit()
     End Sub
