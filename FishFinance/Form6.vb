@@ -57,8 +57,17 @@ Public Class Form6
     Private Sub DataGridView1_CellDoubleClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
 
         Dim highlightedExpense = list_finished_expenses.Find(Function(exp As Expense) exp.IDCode = DataGridView1.Rows(e.RowIndex).Cells(3).Value.ToString())
-        Manage_Pending_Form.Visible = True
-        Manage_Pending_Form.startForm(highlightedExpense, False)
+        If Not (IsNothing(highlightedExpense)) Then
+            Manage_Pending_Form.Visible = True
+            Manage_Pending_Form.startForm(highlightedExpense, False)
+        Else
+            Dim highlightedTrans = list_single_transactions.Find(Function(t As Transaction) t.transID = DataGridView1.Rows(e.RowIndex).Cells(3).Value.ToString())
+            If (Not IsNothing(highlightedTrans)) Then
+                Manage_Payment_Form.Visible = True
+                Manage_Payment_Form.StartForm(highlightedTrans)
+            End If
+        End If
+
 
     End Sub
 
@@ -301,7 +310,7 @@ Public Class Form6
                 ElseIf (temp.getLabel.ToString = "Refund") Then
                     row.DefaultCellStyle.BackColor = Color.Purple
                 Else
-                    row.DefaultCellStyle.BackColor = Color.Red
+                    row.DefaultCellStyle.BackColor = Color.Pink
                 End If
             Else
                 row.DefaultCellStyle.BackColor = Color.Red
@@ -309,8 +318,34 @@ Public Class Form6
 
         Next
         For Each row As DataGridViewRow In DataGridView1.Rows
-            row.DefaultCellStyle.BackColor = Color.Red
+            If (Len(row.Cells(3).Value) = 3) Then
+                Dim temp As Expense = Base_Form.getExpenseGlobal(row.Cells(3).Value)
+                row.DefaultCellStyle.BackColor = Color.Red
+            ElseIf (Len(row.Cells(3).Value) = 4) Then
+                Dim temp As Transaction = Base_Form.getTransactionGlobal(row.Cells(3).Value)
+
+                If temp.getLabel.ToString = "Income" Then
+                    row.DefaultCellStyle.BackColor = Color.Green
+                ElseIf (temp.getLabel.ToString = "Donation") Then
+                    row.DefaultCellStyle.BackColor = Color.DarkGreen
+                ElseIf (temp.getLabel.ToString = "Loan") Then
+                    row.DefaultCellStyle.BackColor = Color.Yellow
+                ElseIf (temp.getLabel.ToString = "Membership") Then
+                    row.DefaultCellStyle.BackColor = Color.LightBlue
+                ElseIf (temp.getLabel.ToString = "Outgoing") Then
+                    row.DefaultCellStyle.BackColor = Color.Red
+                ElseIf (temp.getLabel.ToString = "Refund") Then
+                    row.DefaultCellStyle.BackColor = Color.Purple
+                Else
+                    row.DefaultCellStyle.BackColor = Color.Pink
+                End If
+            Else
+                row.DefaultCellStyle.BackColor = Color.Red
+            End If
+
         Next
+
+
     End Sub
 
     Private Sub DataGridView2_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellDoubleClick

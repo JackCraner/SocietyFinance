@@ -47,7 +47,9 @@
                 counter += 1
             End If
         Next
-
+        For Each t In Base_Form.account_Pending.get_Topics()
+            ComboBox1.Items.Add(t.name)
+        Next
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -58,6 +60,8 @@
         If transaction.getLabel > 0 Then
             'assign to expense or mark as donation
             GroupBox2.Visible = True
+            TextBox1.Text = transaction.name
+            TextBox2.Text = transaction.reference
             DataGridView1.Rows.Clear()
             For Each exp As Expense In account_Pending.Get_Expenses()
                 DataGridView1.Rows.Add(New String() {exp.name, FormatCurrency(exp.Get_Recoup), FormatCurrency(exp.projected_cost), exp.deadline, exp.IDCode})
@@ -72,7 +76,6 @@
 
             'assign as straight payment or recoup expense
             TextBox3.Text = transaction.name
-            Label9.Text = transaction.getABSAmount
             GroupBox1.Visible = True
 
 
@@ -84,6 +87,10 @@
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim newExpense As New Expense(TextBox3.Text, transaction.getABSAmount, transaction.dateMade)
         newExpense.Add_Paid(transaction)
+        If (Not ComboBox1.Text = "") Then
+
+            newExpense.topic = Base_Form.account_Pending.Set_Topic(ComboBox1.Text)
+        End If
         If RadioButton2.Checked Then
 
 
@@ -113,6 +120,8 @@
     End Sub
 
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        transaction.name = TextBox1.Text
+        transaction.reference = TextBox2.Text
         If RadioButton3.Checked Then
             transaction.updateTransactionLabel(TransactionHandle.Income)
         ElseIf RadioButton4.Checked Then
@@ -127,6 +136,7 @@
         Else
             account_Pending.Handle_Transaction(transaction)
             account_History.Add_Transaction(transaction)
+            MsgBox(transaction.name + " " + transaction.getLabel.ToString)
         End If
         Me.Close()
     End Sub
@@ -142,7 +152,7 @@
         End If
     End Sub
 
-    Private Sub DataGridView2_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentDoubleClick
+    Private Sub DataGridView2_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellDoubleClick
         Dim highlightedExpenseID As Expense = account_Pending.Get_Expenses.Find(Function(exp) exp.IDCode = DataGridView2.Rows(e.RowIndex).Cells(4).Value.ToString())
         Dim answer = MsgBox("Is this Expense Completely Finised?", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
         highlightedExpenseID.Add_Paid(transaction)
@@ -152,4 +162,5 @@
         End If
         Me.Close()
     End Sub
+
 End Class

@@ -92,6 +92,7 @@ Public Class AccountPending
         Return Not both.Exists(Function(x As Expense) x.IDCode = id)
     End Function
 
+
     Public Function Create_UTID(Optional ByVal depth As Integer = 0)
         Dim validchars As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -102,14 +103,13 @@ Public Class AccountPending
             Dim randomChar As Char = validchars(idx)
             sb.Append(randomChar)
         Next i
-
         If (Check_UTID(sb.ToString)) Then
             Return sb.ToString()
         Else
             depth += 1
-            If (depth > 10) Then
-                MsgBox("No UTID Left")
-                Return "AAA"
+            If (depth > 100) Then
+
+                Return "AAAA"
             Else
                 Return Create_UTID(depth)
             End If
@@ -120,7 +120,9 @@ Public Class AccountPending
         Dim both As New List(Of Expense)(Base_Form.account_History.Get_Expenses.Concat(MyBase.Get_Expenses))
         Dim found = False
         For Each exp As Expense In both
+
             If (exp.get_transactions.Exists(Function(x As Transaction) x.transID = id)) Then
+
                 found = True
             End If
         Next

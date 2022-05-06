@@ -7,7 +7,7 @@ Imports Excel = Microsoft.Office.Interop.Excel
 <Serializable()>
 Public Class AccountHistory
     Inherits FinanceDataBase
-    Dim list_transactions As New List(Of Transaction)
+    Public list_transactions As New List(Of Transaction)
     Public Sub New()
 
     End Sub

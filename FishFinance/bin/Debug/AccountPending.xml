@@ -2,46 +2,28 @@
 <AccountPending xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <list_expense>
     <Expense>
-      <name>TO A/C 84174838</name>
-      <projected_cost>50</projected_cost>
+      <name>DISCRAFT SO-2163</name>
+      <projected_cost>339.41</projected_cost>
       <projected_payback>0</projected_payback>
-      <deadline>2022-03-28T00:00:00</deadline>
+      <deadline>2022-04-27T00:00:00</deadline>
       <list_of_payments>
-        <Transaction>
-          <name>THOMAS JACKSON</name>
-          <amount>10</amount>
-          <dateMade>2022-03-18T00:00:00</dateMade>
-          <reference> FRISBEE </reference>
-          <label>Income</label>
-          <expLink>MYE</expLink>
-          <transID>BSPE</transID>
-        </Transaction>
-        <Transaction>
-          <name>EDWARD BAKER</name>
-          <amount>32.5</amount>
-          <dateMade>2022-04-06T00:00:00</dateMade>
-          <reference> ED BAKER 01 </reference>
-          <label>Loan</label>
-          <expLink>MYE</expLink>
-          <transID>SPVD</transID>
-        </Transaction>
         <Transaction>
           <name>HELENA BAJURSKA</name>
           <amount>20</amount>
           <dateMade>2022-04-07T00:00:00</dateMade>
           <reference> HELENADISCS </reference>
-          <label>Donation</label>
-          <expLink>MYE</expLink>
-          <transID>GZGV</transID>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>FKQD</transID>
         </Transaction>
         <Transaction>
           <name>PRESTON CHARLOTTE</name>
           <amount>32.5</amount>
           <dateMade>2022-04-07T00:00:00</dateMade>
           <reference> CHARLY PRESTON </reference>
-          <label>Loan</label>
-          <expLink>MYE</expLink>
-          <transID>FTEW</transID>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>SUMN</transID>
         </Transaction>
         <Transaction>
           <name>NATHAN LEADBETTER</name>
@@ -49,61 +31,8 @@
           <dateMade>2022-04-07T00:00:00</dateMade>
           <reference> NATHANJUMPERHOODY </reference>
           <label>Income</label>
-          <expLink>MYE</expLink>
-          <transID>TTWK</transID>
-        </Transaction>
-        <Transaction>
-          <name>ARUODZIUTE I</name>
-          <amount>10</amount>
-          <dateMade>2022-04-22T00:00:00</dateMade>
-          <reference> INDRE - DISC </reference>
-          <label>Income</label>
-          <expLink>MYE</expLink>
-          <transID>URNX</transID>
-        </Transaction>
-        <Transaction>
-          <name>ARUODZIUTE I</name>
-          <amount>1000</amount>
-          <dateMade>2022-04-30T00:00:00</dateMade>
-          <reference> MYE</reference>
-          <label>Income</label>
-          <expLink>MYE</expLink>
-          <transID>JCDU</transID>
-        </Transaction>
-      </list_of_payments>
-      <IDCode>MYE</IDCode>
-      <paidFlag>
-        <name>TO A/C 84174838</name>
-        <amount>50</amount>
-        <dateMade>2022-03-28T00:00:00</dateMade>
-        <reference> VIA MOBILE - XFER"</reference>
-        <label>Outgoing</label>
-        <transID>MYEW</transID>
-      </paidFlag>
-    </Expense>
-    <Expense>
-      <name>SMOG</name>
-      <projected_cost>80</projected_cost>
-      <projected_payback>0</projected_payback>
-      <deadline>2022-03-28T00:00:00</deadline>
-      <list_of_payments>
-        <Transaction>
-          <name>SENIOR CHARLES</name>
-          <amount>10</amount>
-          <dateMade>2022-04-06T00:00:00</dateMade>
-          <reference> CHARLIE SENIOR </reference>
-          <label>Income</label>
-          <expLink>SGM</expLink>
-          <transID>MRRF</transID>
-        </Transaction>
-        <Transaction>
-          <name>JOHN HARPUR</name>
-          <amount>65</amount>
-          <dateMade>2022-04-06T00:00:00</dateMade>
-          <reference> CHARPUR </reference>
-          <label>Membership</label>
-          <expLink>SGM</expLink>
-          <transID>LIAJ</transID>
+          <expLink>DZE</expLink>
+          <transID>ZNUZ</transID>
         </Transaction>
         <Transaction>
           <name>JOHN HARPUR</name>
@@ -111,20 +40,288 @@
           <dateMade>2022-04-08T00:00:00</dateMade>
           <reference> FISHBOWL DISKS X2 </reference>
           <label>Income</label>
-          <expLink>SGM</expLink>
-          <transID>HHRM</transID>
+          <expLink>DZE</expLink>
+          <transID>XOXA</transID>
+        </Transaction>
+        <Transaction>
+          <name>ARUODZIUTE I</name>
+          <amount>10</amount>
+          <dateMade>2022-04-12T00:00:00</dateMade>
+          <reference> INDRE - DISC </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>TOFI</transID>
+        </Transaction>
+        <Transaction>
+          <name>LANCASTER UNIVERSI</name>
+          <amount>392.9</amount>
+          <dateMade>2022-04-28T00:00:00</dateMade>
+          <reference>NULL</reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>AHNU</transID>
+        </Transaction>
+        <Transaction>
+          <name>NATHAN LEADBETTER</name>
+          <amount>6</amount>
+          <dateMade>2022-04-28T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>YIQV</transID>
+        </Transaction>
+        <Transaction>
+          <name>JOHN HARPUR</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> CAMERON FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>HOXV</transID>
+        </Transaction>
+        <Transaction>
+          <name>ALEXANDRA VERO</name>
+          <amount>18</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> AV - BIN X3 MORE </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>YMON</transID>
+        </Transaction>
+        <Transaction>
+          <name>DUMRONGTHAIP</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL NUNA.) </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>FFWZ</transID>
+        </Transaction>
+        <Transaction>
+          <name>JENKINS J C</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>FTYO</transID>
+        </Transaction>
+        <Transaction>
+          <name>O PAYNE</name>
+          <amount>12</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> OSC + SISTER </reference>
+          <label>Membership</label>
+          <expLink>DZE</expLink>
+          <transID>EJZY</transID>
+        </Transaction>
+        <Transaction>
+          <name>PRESTON CHARLOTTE</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>PUYJ</transID>
+        </Transaction>
+        <Transaction>
+          <name>JARKOVSKAIA-NIOU</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL - ALEX N </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>KVFM</transID>
+        </Transaction>
+        <Transaction>
+          <name>HELENA BAJURSKA</name>
+          <amount>10</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> BINSOCIALHELENA </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>ROMX</transID>
+        </Transaction>
+        <Transaction>
+          <name>ALEXANDRA VERO</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> AV - BIN </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>TRMV</transID>
+        </Transaction>
+        <Transaction>
+          <name>ALBERT HART</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL AH </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>GNGQ</transID>
+        </Transaction>
+        <Transaction>
+          <name>R UPTON</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> R UPTON FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>SIGS</transID>
+        </Transaction>
+        <Transaction>
+          <name>PRESTON CHARLOTTE</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>EEFU</transID>
+        </Transaction>
+        <Transaction>
+          <name>PAGE ADAM</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> ADAM PAGE </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>HHZL</transID>
+        </Transaction>
+        <Transaction>
+          <name>ARUODZIUTE I</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> INDRE-FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>OAHX</transID>
+        </Transaction>
+        <Transaction>
+          <name>ALYSSA JACKSON</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL - ALYSSA </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>YVMG</transID>
+        </Transaction>
+        <Transaction>
+          <name>EDWARD BAKER</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>GBXN</transID>
+        </Transaction>
+        <Transaction>
+          <name>G DESOUZAMENEZES</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>COBA</transID>
+        </Transaction>
+        <Transaction>
+          <name>RICHARD TANNER-SMI</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKLOTS </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>VZRG</transID>
+        </Transaction>
+        <Transaction>
+          <name>JORGE WHITE</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>AFAE</transID>
+        </Transaction>
+        <Transaction>
+          <name>K RUSSELL</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL-KATIE </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>DYQX</transID>
+        </Transaction>
+        <Transaction>
+          <name>HILL S</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>XZBG</transID>
+        </Transaction>
+        <Transaction>
+          <name>BYRNE E P</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>FHGB</transID>
+        </Transaction>
+        <Transaction>
+          <name>HAWKINS M</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>IKBS</transID>
+        </Transaction>
+        <Transaction>
+          <name>VODDEN SE</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>ELJA</transID>
+        </Transaction>
+        <Transaction>
+          <name>COCKFIELD RD</name>
+          <amount>6</amount>
+          <dateMade>2022-05-03T00:00:00</dateMade>
+          <reference> FKL </reference>
+          <label>Income</label>
+          <expLink>DZE</expLink>
+          <transID>CMMB</transID>
         </Transaction>
       </list_of_payments>
-      <IDCode>SGM</IDCode>
+      <IDCode>DZE</IDCode>
       <paidFlag>
-        <name>SMOG</name>
-        <amount>80</amount>
-        <dateMade>2022-03-28T00:00:00</dateMade>
-        <reference> LANCASTER FISH </reference>
+        <name>DISCRAFT SO-2163</name>
+        <amount>339.41</amount>
+        <dateMade>2022-04-27T00:00:00</dateMade>
+        <reference> RGHNAMO10808640 </reference>
         <label>Outgoing</label>
-        <transID>SGMR</transID>
+        <transID>DZEE</transID>
+      </paidFlag>
+    </Expense>
+    <Expense>
+      <name>ALBERT</name>
+      <projected_cost>150</projected_cost>
+      <projected_payback>0</projected_payback>
+      <deadline>2022-05-03T00:00:00</deadline>
+      <list_of_payments />
+      <IDCode>FRB</IDCode>
+      <paidFlag>
+        <name>ALBERT</name>
+        <amount>150</amount>
+        <dateMade>2022-05-03T00:00:00</dateMade>
+        <reference> BIN FKL </reference>
+        <label>Outgoing</label>
+        <transID>FRBL</transID>
       </paidFlag>
     </Expense>
   </list_expense>
-  <current_Balance>517.01</current_Balance>
+  <current_Balance>598.5</current_Balance>
 </AccountPending>

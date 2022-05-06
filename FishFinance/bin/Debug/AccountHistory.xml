@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AccountHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <list_expense />
+  <list_transactions>
+    <Transaction>
+      <name>SENIOR CHARLES</name>
+      <amount>10</amount>
+      <dateMade>2022-04-06T00:00:00</dateMade>
+      <reference> CHARLIE SENIOR </reference>
+      <label>Income</label>
+      <transID>MFAM</transID>
+    </Transaction>
+    <Transaction>
+      <name>EDWARD BAKER</name>
+      <amount>32.5</amount>
+      <dateMade>2022-04-06T00:00:00</dateMade>
+      <reference> ED BAKER 01 </reference>
+      <label>Membership</label>
+      <transID>SHGJ</transID>
+    </Transaction>
+    <Transaction>
+      <name>JOHN HARPUR</name>
+      <amount>65</amount>
+      <dateMade>2022-04-06T00:00:00</dateMade>
+      <reference> CHARPUR </reference>
+      <label>Donation</label>
+      <transID>EMZP</transID>
+    </Transaction>
+  </list_transactions>
 </AccountHistory>

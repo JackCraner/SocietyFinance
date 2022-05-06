@@ -38,9 +38,9 @@ Public Class Base_Form
         Next
 
         Label5.Text = account_Settings.get_LUD
-        Balance_L.Text = account_Pending.Get_Current_Balance
-        A_Balance_L.Text = account_Pending.Get_Ava_Balance
-        Label4.Text = account_Pending.Get_Predicted_Balance
+        Balance_L.Text = Math.Round(account_Pending.Get_Current_Balance, 2)
+        A_Balance_L.Text = Math.Round(account_Pending.Get_Ava_Balance, 2)
+        Label4.Text = Math.Round(account_Pending.Get_Predicted_Balance, 2)
     End Sub
 
 
@@ -60,7 +60,11 @@ Public Class Base_Form
     End Sub
 
     Private Sub ToolStripDropDownButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripDropDownButton3.Click
-        ClearALL()
+        Dim answer = MsgBox("Are you sure?", vbQuestion + vbYesNo + vbDefaultButton2, "Waait")
+        If (answer = MsgBoxResult.Yes) Then
+            ClearALL()
+        End If
+
     End Sub
 
     Private Sub DataGridView1_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
@@ -175,17 +179,26 @@ Public Class Base_Form
             If Not (data(0) = "Date" Or data(0) = "") Then
                 Dim descrip As New List(Of String)
                 For i As Integer = 2 To data.Count - 5
+
                     descrip.Add(data(i))
                 Next
                 Dim name As String = descrip(0).Replace("""", "").Trim()
-                Dim ref As String = descrip(1)
-                finalBalance = data(3 + descrip.Count)
-                Dim newTransaction As New ExcelItem(data(2 + descrip.Count), name, ref, data(0))
+                Dim ref As String
+                If (descrip.Count > 1) Then
+                    ref = descrip(1)
+                Else
+                    ref = "NULL"
+                End If
+
+                finalBalance = data(3 + descrip.Count).Replace("""", "").Trim()
+                Dim newTransaction As New ExcelItem(data(2 + descrip.Count), name, ref, data(0).Replace("""", "").Trim())
                 If (DateTime.Compare(newTransaction.dateMade, account_Settings.get_LUD) >= 0) Then
                     If newTransaction.amount >= 0 Then
                         For Each expense As Expense In account_Pending.Get_Expenses()
                             If ref.Contains(expense.IDCode) Then  'THis is a worry, make more strict
-                                expense.Add_Income(New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade))
+                                Dim newT = New Transaction(newTransaction.amount, TransactionHandle.Income, newTransaction.name, newTransaction.reference, newTransaction.dateMade)
+                                newT.transID = account_Pending.Create_UTID
+                                expense.Add_Income(newT)
                                 rowAccounted = True
                             End If
 
@@ -290,12 +303,21 @@ Public Class Base_Form
 
     Public Function getTransactionGlobal(ByVal id As String) As Transaction
         Dim both As New List(Of Expense)(account_History.Get_Expenses.Concat(account_Pending.Get_Expenses))
+
         For Each exp As Expense In both
             If (exp.get_transactions.Exists(Function(x As Transaction) x.transID = id)) Then
                 Return exp.get_transactions.Find(Function(x As Transaction) x.transID = id)
             End If
-            If (exp.isPaid And exp.paidFlag.transID = id) Then
-                Return exp.paidFlag
+            If (exp.isPaid) Then
+                If (exp.paidFlag.transID = id) Then
+                    Return exp.paidFlag
+                End If
+
+            End If
+        Next
+        For Each tran As Transaction In account_History.Get_Transactions()
+            If tran.transID = id Then
+                Return tran
             End If
         Next
         Return Nothing
