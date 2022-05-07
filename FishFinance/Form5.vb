@@ -47,9 +47,13 @@
                 counter += 1
             End If
         Next
+        ComboBox1.Items.Clear()
+
         For Each t In Base_Form.account_Pending.get_Topics()
             ComboBox1.Items.Add(t.name)
         Next
+        DataGridView1.ClearSelection()
+        DataGridView2.ClearSelection()
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

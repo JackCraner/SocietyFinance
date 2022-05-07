@@ -40,13 +40,15 @@ Partial Class Manage_Payment_Form
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextBox1
         '
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(60, 125)
+        Me.TextBox1.Location = New System.Drawing.Point(70, 118)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 26)
         Me.TextBox1.TabIndex = 0
@@ -54,7 +56,7 @@ Partial Class Manage_Payment_Form
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(17, 386)
+        Me.Button1.Location = New System.Drawing.Point(255, 372)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(184, 42)
         Me.Button1.TabIndex = 1
@@ -64,7 +66,7 @@ Partial Class Manage_Payment_Form
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(17, 342)
+        Me.Button2.Location = New System.Drawing.Point(255, 328)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(190, 38)
         Me.Button2.TabIndex = 2
@@ -74,9 +76,9 @@ Partial Class Manage_Payment_Form
         'TextBox2
         '
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(60, 51)
+        Me.TextBox2.Location = New System.Drawing.Point(34, 39)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 26)
+        Me.TextBox2.Size = New System.Drawing.Size(157, 26)
         Me.TextBox2.TabIndex = 3
         '
         'Label1
@@ -93,7 +95,7 @@ Partial Class Manage_Payment_Form
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 87)
+        Me.Label2.Location = New System.Drawing.Point(18, 90)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(189, 25)
         Me.Label2.TabIndex = 5
@@ -116,7 +118,7 @@ Partial Class Manage_Payment_Form
         Me.DataGridView1.Location = New System.Drawing.Point(255, 90)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(292, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(348, 150)
         Me.DataGridView1.TabIndex = 7
         '
         'Column1
@@ -148,7 +150,7 @@ Partial Class Manage_Payment_Form
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 204)
+        Me.Label4.Location = New System.Drawing.Point(12, 291)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(189, 25)
         Me.Label4.TabIndex = 9
@@ -158,7 +160,7 @@ Partial Class Manage_Payment_Form
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(44, 170)
+        Me.Label5.Location = New System.Drawing.Point(44, 264)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(132, 25)
         Me.Label5.TabIndex = 10
@@ -168,7 +170,7 @@ Partial Class Manage_Payment_Form
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(29, 252)
+        Me.Label6.Location = New System.Drawing.Point(29, 365)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(162, 25)
         Me.Label6.TabIndex = 11
@@ -178,7 +180,7 @@ Partial Class Manage_Payment_Form
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(49, 285)
+        Me.ComboBox1.Location = New System.Drawing.Point(49, 393)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox1.TabIndex = 12
@@ -196,18 +198,38 @@ Partial Class Manage_Payment_Form
         'Button4
         '
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(464, 39)
+        Me.Button4.Location = New System.Drawing.Point(535, 24)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(83, 38)
+        Me.Button4.Size = New System.Drawing.Size(83, 31)
         Me.Button4.TabIndex = 14
         Me.Button4.Text = "View"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(18, 175)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(218, 25)
+        Me.Label8.TabIndex = 15
+        Me.Label8.Text = "Payment Reference"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(70, 203)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 26)
+        Me.TextBox3.TabIndex = 16
         '
         'Manage_Payment_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(559, 462)
+        Me.ClientSize = New System.Drawing.Size(630, 432)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.ComboBox1)
@@ -248,4 +270,6 @@ Partial Class Manage_Payment_Form
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Button4 As Button
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TextBox3 As TextBox
 End Class

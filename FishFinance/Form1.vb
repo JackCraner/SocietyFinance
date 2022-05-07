@@ -36,11 +36,20 @@ Public Class Base_Form
             End If
 
         Next
-
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            Dim rowDate As Date = row.Cells(4).Value
+            If (DateTime.Compare(DateTime.Today, rowDate) >= 0) Then
+                row.Cells(4).Style.BackColor = Color.Red
+            ElseIf ((DateTime.Compare(DateTime.Today.AddDays(7), rowDate) > 0)) Then
+                row.Cells(4).Style.BackColor = Color.Yellow
+            End If
+        Next
         Label5.Text = account_Settings.get_LUD
         Balance_L.Text = Math.Round(account_Pending.Get_Current_Balance, 2)
         A_Balance_L.Text = Math.Round(account_Pending.Get_Ava_Balance, 2)
         Label4.Text = Math.Round(account_Pending.Get_Predicted_Balance, 2)
+        DataGridView1.ClearSelection()
+        DataGridView2.ClearSelection()
     End Sub
 
 

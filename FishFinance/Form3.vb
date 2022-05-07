@@ -13,6 +13,7 @@
         Label4.Text = exp.projected_cost
         Label7.Text = exp.Get_Recoup()
         TextBox1.Text = exp.getProjectedPayback
+        DateTimePicker1.Value = exp.deadline
         If (exp.hasTopic()) Then
             TextBox4.Text = exp.topic.name
         Else
@@ -43,6 +44,7 @@
         End If
         Base_Form.updateALL()
         ColourCode()
+        DataGridView1.ClearSelection()
     End Sub
     Public Sub ColourCode()
         For Each row As DataGridViewRow In DataGridView1.Rows
@@ -133,5 +135,10 @@
 
     Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
 
+    End Sub
+
+    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+        exp.deadline = DateTimePicker1.Value.Date
+        Base_Form.updateALL()
     End Sub
 End Class

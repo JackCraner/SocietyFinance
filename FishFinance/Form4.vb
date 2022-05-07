@@ -7,6 +7,7 @@
     Public Sub UpdateForm()
         TextBox1.Text = payment.getABSAmount
         TextBox2.Text = payment.name
+        TextBox3.Text = payment.reference
         Label4.Text = payment.transID
         DataGridView1.Rows.Clear()
         ComboBox1.Items.Clear()
@@ -41,6 +42,7 @@
             Label3.Text = "No Expense Link"
             Button4.Visible = False
         End If
+        DataGridView1.ClearSelection()
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         payment.name = TextBox2.Text

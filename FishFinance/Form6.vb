@@ -14,6 +14,8 @@ Public Class Form6
     End Sub
     Public Sub Update_Form()
         Set_Date_Order()
+        DataGridView1.ClearSelection()
+        DataGridView2.ClearSelection()
     End Sub
 
     Public Sub Set_Date_Order()
